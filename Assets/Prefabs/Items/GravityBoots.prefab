@@ -99,7 +99,7 @@ PrefabInstance:
     - target: {fileID: 2349195624351803488, guid: 9c3aa1bc42b923f48b6187526302647c,
         type: 3}
       propertyPath: count
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2349195624351803488, guid: 9c3aa1bc42b923f48b6187526302647c,
         type: 3}

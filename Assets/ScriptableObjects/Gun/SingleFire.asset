@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: SingleFire
   m_EditorClassIdentifier: 
   fireType: 0
+  projectile: {fileID: 3235304794356672272, guid: f9a140ea0f386594dbc6d8629e639fe5,
+    type: 3}
+  <RequiresAmmo>k__BackingField: 1
   timeBetweenShots: 0
   bulletSpeed: 3000
   rpm: 600

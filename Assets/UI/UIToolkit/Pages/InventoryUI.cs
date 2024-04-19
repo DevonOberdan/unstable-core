@@ -40,8 +40,8 @@ public class InventoryUI : MonoBehaviour
         //root = uiDoc.rootVisualElement;
         root = uiDoc.rootVisualElement.Q(inGameUIName);
         print(root.name);
-        //boostBar = root.Q<ProgressBar>("BoostBar");
-        // boostBar.value = boostBar.highValue;
+        boostBar = root.Q<ProgressBar>("BoostBar");
+        boostBar.value = boostBar.highValue;
 
         // bootDrainLabel = root.Q<Label>("GravityBootsChargeLevel");
         // bootDrainLabel.visible = false;

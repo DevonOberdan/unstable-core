@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class RotateObject : MonoBehaviour
 {
@@ -32,7 +31,6 @@ public class RotateObject : MonoBehaviour
         rotationVector *= positive ? 1 : -1;
     }
 
-
     void Update()
     {
         transform.Rotate(rotationVector * rotationSpeed * dampenFactor * Time.deltaTime);
@@ -50,7 +48,4 @@ public class RotateObject : MonoBehaviour
     {
 
     }
-
-
-
 }

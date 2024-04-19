@@ -18,6 +18,8 @@ public class GunConfig : ScriptableObject
 
     [SerializeField] GameObject projectile;
 
+    [field: SerializeField] public bool RequiresAmmo { get; private set; } = true;
+
     [SerializeField] float timeBetweenShots;
     [SerializeField] float bulletSpeed = 3000;
 

@@ -210,7 +210,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    bool CanShoot() => Inventory.Instance.CanUseItem(ItemType.Ammo) &&
+    bool CanShoot() => (!data.RequiresAmmo || Inventory.Instance.CanUseItem(ItemType.Ammo)) &&
                        timeSinceFired > data.TimeBetweenShots &&
                        !midFire && (data.CanHoldFire || !chargeFired);
 

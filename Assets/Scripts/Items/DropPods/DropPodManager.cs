@@ -93,10 +93,6 @@ public class DropPodManager : MonoBehaviour
             {
                 SpawnAtPoint(selectedPoint);
             }
-            else
-            {
-                Debug.Log("Pod already spawned at point");
-            }
         }
     }
 
@@ -148,18 +144,19 @@ public class DropPodManager : MonoBehaviour
     {
         PodConfiguration config = new PodConfiguration(PodItemMode.RANDOM);
 
-
         if (Inventory.Instance.IsEmpty())
         {
             config.mode = PodItemMode.ALL;
         }
-        else if (Inventory.Instance.AnyItemsRequired(AllItems.Select(item => item.Type).ToList()))
-        {
-            config.mode = PodItemMode.ALL_OF_ONE;
-            config.itemType = Inventory.Instance.ItemMostNeeded();
-        }
+        //TODO: Current implementation has a drop pod determine what to have at the time it is beamed down.. so 8 pods can
+        //      drop while the player is wandering around the planet with no Boots.. resulting in 8 pods with only Boots..
+        //      Would work much better if doors stay closed until player gets in proximity, and this runs at that point.
 
-        print($"Mode: {config.mode} Type: {config.itemType}");
+        //else if (Inventory.Instance.AnyItemsRequired(AllItems.Select(item => item.Type).ToList()))
+        //{
+        //    config.mode = PodItemMode.ALL_OF_ONE;
+        //    config.itemType = Inventory.Instance.ItemMostNeeded();
+        //}
 
         return config;
     }

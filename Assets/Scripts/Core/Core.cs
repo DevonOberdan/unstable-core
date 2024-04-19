@@ -295,7 +295,6 @@ public class Core : MonoBehaviour
         //Inventory.Instance.CoreEnergy += extractionAmount;
 
         // event that sends extractionAmount over to Inventory (have inventory value be a multiple of this small extractionAmount
-        print("extracting");
         return 1;
 
         void SpawnEnergy(int count)

@@ -59,7 +59,6 @@ public class GraphicsMenuController : MonoBehaviour
             if(menuUI.CurrentPresetIndex != QualitySettings.GetQualityLevel())
                 QualitySettings.SetQualityLevel(menuUI.CurrentPresetIndex, false);
 
-            print(QualitySettings.vSyncCount);
             menuUI.SetCurrentVSyncValue(QualitySettings.vSyncCount > 0, false);
             // set all graphics options, without notifying
         }

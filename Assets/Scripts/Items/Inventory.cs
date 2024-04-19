@@ -59,7 +59,7 @@ public class Inventory : MonoBehaviour
 
     public ItemType ItemMostNeeded() 
     {
-        return (ItemType) itemCounts.Values.OrderBy(value => value).First();
+        return (ItemType) itemCounts.OrderBy(keyValue => keyValue.Value).First().Key;
     }
 
     public bool CanUseItem(ItemType type) => itemCounts[(int)type] > 0;

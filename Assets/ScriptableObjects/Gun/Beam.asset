@@ -15,6 +15,7 @@ MonoBehaviour:
   fireType: 3
   projectile: {fileID: 2251841575284976895, guid: 71a5824bf080da74eb776bfddb6509b4,
     type: 3}
+  <RequiresAmmo>k__BackingField: 0
   timeBetweenShots: 0
   bulletSpeed: 3000
   rpm: 800
