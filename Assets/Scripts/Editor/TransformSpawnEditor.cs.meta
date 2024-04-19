@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 131fd3fb53cec44879a0d8a961b178ce
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dropPodSpawnPoint: {fileID: 2376164456473151905, guid: 67bf2b57800454f46abd25b95c010212,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

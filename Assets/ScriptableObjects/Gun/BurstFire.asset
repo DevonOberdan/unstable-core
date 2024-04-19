@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd4c2b9f6436415aa807d0094324964, type: 3}
+  m_Name: BurstFire
+  m_EditorClassIdentifier: 
+  fireType: 1
+  projectile: {fileID: 3235304794356672272, guid: 1bbc6cc11f2cd374f99933e040e5bf21,
+    type: 3}
+  timeBetweenShots: 0.25
+  bulletSpeed: 3000
+  rpm: 500
+  burstCount: 3
+  chargeUp: 0
+  chargeTime: 1
+  chargeSingleShot: 0
+  instantRelease: 1

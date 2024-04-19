@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="SettingsPageTemplate" src="project://database/Assets/UI/UIToolkit/Uxml/Templates/SettingsPageTemplate.uxml?fileID=9197481963319205126&amp;guid=84a0880fbc12e6d4783a1f816cb2a190&amp;type=3#SettingsPageTemplate" />
+    <Style src="project://database/Assets/UI/UIToolkit/UNUSED/SettingsPageStyling.uss?fileID=7433441132597879392&amp;guid=c9f2cce87c8d90947b8b58d1269f4acb&amp;type=3#SettingsPageStyling" />
+    <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/PauseScreen.uss?fileID=7433441132597879392&amp;guid=686a1a13f7a87ee43adfe3bcb791cd96&amp;type=3#PauseScreen" />
+    <Style src="project://database/Assets/UI/UIToolkit/Controls/CarouselSelector.uss?fileID=7433441132597879392&amp;guid=e93f428dc03ce43269ba41e1b856b0cd&amp;type=3#CarouselSelector" />
+    <Style src="project://database/Assets/UI/UIToolkit/Controls/SlideToggle.uss?fileID=7433441132597879392&amp;guid=f929f6be3cb124fb989d94d45c7ff61d&amp;type=3#SlideToggle" />
+    <ui:Instance template="SettingsPageTemplate" name="graphics-screen-center-anchor" style="width: 100%; height: 100%;">
+        <AttributeOverrides element-name="header-label" text="Graphics" />
+        <ui:DropdownField label="Resolution" index="-1" name="resolution-dropdown" class="menu-label" style="font-size: 85%; justify-content: flex-start;" />
+        <CarouselSelector index="-1" name="framerate-selector" label="Framerate" />
+        <CarouselSelector index="1" label="Screen Mode" name="screen-mode-selector" style="justify-content: flex-start; align-items: center;" />
+        <CarouselSelector index="-1" label="Graphics Preset" name="quality-preset-selector" />
+        <MyUILibrary.SlideToggle name="vsync-toggle" label="V-Sync" style="font-size: 85%; -unity-text-align: middle-center;" />
+    </ui:Instance>
+</ui:UXML>

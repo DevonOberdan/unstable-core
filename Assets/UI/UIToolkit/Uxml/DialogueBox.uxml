@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/UIToolkit/Themes/ThemeStyling.uss?fileID=7433441132597879392&amp;guid=beb258e8bc34387458516bf756b22860&amp;type=3#ThemeStyling" />
+</ui:UXML>

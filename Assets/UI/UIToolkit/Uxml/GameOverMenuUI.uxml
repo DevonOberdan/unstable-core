@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/MenuStyling.uss?fileID=7433441132597879392&amp;guid=d4296f73511e776479c26b958def44af&amp;type=3#MenuStyling" />
+    <ui:VisualElement name="game-over--centor-anchor" style="width: 100%; height: 100%; position: absolute; align-items: center; justify-content: center;">
+        <ui:VisualElement name="game-over--overlay" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0;" />
+        <ui:VisualElement name="game-over--panel" style="width: 720px; height: 620px; justify-content: flex-start; align-items: center; background-image: url(&apos;project://database/Assets/UI/Images/Background.png?fileID=2800000&amp;guid=3f5198b1174b8554c8c638fa30a23370&amp;type=3#Background&apos;); -unity-background-image-tint-color: rgb(35, 43, 49); left: auto; top: auto; position: relative;">
+            <ui:Label text="Game Over" display-tooltip-when-elided="true" name="game-over--title" class="default-font" style="width: 100%; height: 20%; font-size: 120px; -unity-text-align: middle-center; justify-content: flex-start; position: relative; top: auto; margin-top: 30px; color: rgb(232, 221, 181);" />
+            <ui:VisualElement name="game-over--button-group" style="justify-content: space-around; align-items: center; flex-direction: row; flex-shrink: 0; flex-grow: 1; width: 100%; margin-left: 0; -unity-text-outline-width: 0;">
+                <ui:Button text="Retry" display-tooltip-when-elided="true" name="game-over--retry-button" class="default-button default-font" style="background-color: rgb(149, 184, 209); -unity-slice-left: 9; -unity-slice-top: 9; -unity-slice-right: 9; -unity-slice-bottom: 9; -unity-background-scale-mode: scale-and-crop;" />
+                <ui:Button text="Quit" display-tooltip-when-elided="true" name="game-over--quit-button" class="default-button default-font" style="background-color: rgb(237, 175, 184);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

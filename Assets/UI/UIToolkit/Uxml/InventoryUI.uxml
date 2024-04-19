@@ -1,0 +1,28 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/MenuStyling.uss?fileID=7433441132597879392&amp;guid=d4296f73511e776479c26b958def44af&amp;type=3#MenuStyling" />
+    <ui:GroupBox style="flex-direction: row; flex-grow: 1; align-items: flex-end;">
+        <ui:GroupBox style="flex-grow: 1; align-items: center; margin-left: 40px; margin-bottom: 40px; flex-direction: row; transform-origin: center;">
+            <ui:GroupBox style="align-items: center; margin-right: 60px;">
+                <ui:Label text="5" display-tooltip-when-elided="true" name="BoosterCount" class="default-font" style="font-size: 100px; background-color: rgba(0, 0, 0, 0); color: rgb(39, 221, 1);" />
+                <ui:GroupBox style="flex-direction: row; align-items: center;">
+                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Images/booster_icon.png?fileID=2800000&amp;guid=8cb146b1271d6da45b9feb95ff70e293&amp;type=3#booster_icon&apos;); width: 200px; height: 200px; margin-top: 30px; margin-right: 30px;" />
+                    <ui:ProgressBar name="BoostBar" style="height: 16px; width: 16px; rotate: -90deg; scale: 16 3; transform-origin: top; margin-right: 0; margin-left: 0; justify-content: flex-end; align-items: stretch;" />
+                </ui:GroupBox>
+            </ui:GroupBox>
+            <ui:GroupBox style="align-items: center; margin-left: 180px; margin-right: 30px;">
+                <ui:Label text="5" display-tooltip-when-elided="true" name="GravityBootsCount" class="default-font" style="font-size: 100px; color: rgba(221, 1, 216, 0.82);" />
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Images/boot_icon.png?fileID=2800000&amp;guid=38295c084fe28564f8a0d57d67b6acf1&amp;type=3#boot_icon&apos;); width: 200px; height: 200px; margin-top: 30px;" />
+            </ui:GroupBox>
+            <ui:Label text="1" display-tooltip-when-elided="true" name="GravityBootsChargeLevel" style="font-size: 100px; color: rgba(221, 1, 216, 0.82); justify-content: flex-start; display: none;" />
+        </ui:GroupBox>
+        <ui:GroupBox style="justify-content: flex-end; align-items: flex-end; flex-direction: column-reverse; flex-wrap: nowrap; position: relative; bottom: auto; top: auto; flex-grow: 1; flex-shrink: 0; margin-right: 40px; margin-bottom: 40px;">
+            <ui:GroupBox style="position: relative; justify-content: center; align-items: center;">
+                <ui:Label text="14" display-tooltip-when-elided="true" name="AmmoCount" class="default-font" style="font-size: 100px; color: rgba(1, 190, 221, 0.82);" />
+                <ui:VisualElement text="100" style="background-image: url(&apos;project://database/Assets/UI/Images/ammo_icon.png?fileID=2800000&amp;guid=6ea726ffe2ca30c43997515f8d83b077&amp;type=3#ammo_icon&apos;); width: 200px; height: 200px; margin-top: 30px;" />
+            </ui:GroupBox>
+        </ui:GroupBox>
+    </ui:GroupBox>
+    <ui:VisualElement style="position: absolute; left: auto; width: 570px; height: 200px; padding-left: 1%; padding-top: 1%;">
+        <ui:Label text="0" display-tooltip-when-elided="true" name="CoreEnergyCount" class="default-font" style="flex-grow: 1; font-size: 100px; -unity-text-align: middle-right; width: 398px; color: rgb(200, 102, 95);" />
+    </ui:VisualElement>
+</ui:UXML>

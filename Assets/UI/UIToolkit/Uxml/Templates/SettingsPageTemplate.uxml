@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/UIToolkit/UNUSED/SettingsPageStyling.uss?fileID=7433441132597879392&amp;guid=c9f2cce87c8d90947b8b58d1269f4acb&amp;type=3#SettingsPageStyling" />
+    <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/PauseScreen.uss?fileID=7433441132597879392&amp;guid=686a1a13f7a87ee43adfe3bcb791cd96&amp;type=3#PauseScreen" />
+    <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/MenuStyling.uss?fileID=7433441132597879392&amp;guid=d4296f73511e776479c26b958def44af&amp;type=3#MenuStyling" />
+    <ui:VisualElement name="menu-center-anchor" class="settings-page-centor-anchor default-font" style="font-size: initial;">
+        <ui:VisualElement name="menu-panel" class="settings-page-panel" style="align-items: center; justify-content: flex-end; background-image: url(&apos;project://database/Assets/UI/Images/Background.png?fileID=2800000&amp;guid=3f5198b1174b8554c8c638fa30a23370&amp;type=3#Background&apos;); -unity-background-image-tint-color: rgb(149, 184, 209); -unity-slice-left: 20; -unity-slice-top: 20; -unity-slice-right: 20; -unity-slice-bottom: 20; font-size: initial;">
+            <ui:VisualElement name="menu-header" class="settings-page-header" style="-unity-text-align: upper-left; align-items: center; opacity: 1; font-size: 100%;">
+                <ui:Label text="Template" display-tooltip-when-elided="true" name="header-label" class="settings-page-title" />
+            </ui:VisualElement>
+            <ui:VisualElement contentContainer="this" name="menu-body" class="settings-page-body" style="bottom: auto; height: 70%;" />
+            <ui:VisualElement name="menu-footer" class="settings-page-header settings-page-footer" style="flex-direction: row-reverse; flex-grow: 0; flex-shrink: 1;">
+                <ui:Button text="Apply" display-tooltip-when-elided="true" name="apply-button" style="width: 20%; height: 100%; font-size: 65%; background-color: rgb(232, 221, 181);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

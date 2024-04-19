@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="InventoryUI" src="project://database/Assets/UI/UIToolkit/InGame/InventoryUI.uxml?fileID=9197481963319205126&amp;guid=2b1167042d064294ba0ed9c5bdef2517&amp;type=3#InventoryUI" />
+    <ui:Template name="PauseScreen" src="project://database/Assets/UI/UIToolkit/PauseMenu/PauseScreen.uxml?fileID=9197481963319205126&amp;guid=fbedacea57379c24e978c72dcd5cd72c&amp;type=3#PauseScreen" />
+    <ui:Template name="SettingsScreen" src="project://database/Assets/UI/UIToolkit/Settings/SettingsMenuUI.uxml?fileID=9197481963319205126&amp;guid=b37e22ed1c4785b4b89d49f1214eb595&amp;type=3#SettingsMenuUI" />
+    <ui:Template name="GameOverMenuUI" src="project://database/Assets/UI/UIToolkit/GameOver/GameOverMenuUI.uxml?fileID=9197481963319205126&amp;guid=ddd0a2ea9c5a0534d86c60e479fa9057&amp;type=3#GameOverMenuUI" />
+    <ui:Instance template="InventoryUI" name="InGameUI" style="width: 100%; height: 100%;" />
+    <ui:Instance template="PauseScreen" name="PauseMenuUI" picking-mode="Ignore" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
+    <ui:Instance template="SettingsScreen" name="SettingsMenuUI" picking-mode="Ignore" style="display: none; position: absolute; left: 0; top: 0; width: 100%; height: 100%;" />
+    <ui:Instance template="GameOverMenuUI" name="GameOverMenuUI" style="width: 100%; height: 100%; display: none;" />
+</ui:UXML>

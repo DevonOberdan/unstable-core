@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="SettingsPageTemplate" src="project://database/Assets/UI/UIToolkit/Settings/Templates/SettingsPageTemplate.uxml?fileID=9197481963319205126&amp;guid=84a0880fbc12e6d4783a1f816cb2a190&amp;type=3#SettingsPageTemplate" />
+    <ui:Instance template="SettingsPageTemplate" name="SettingsPageTemplate" style="width: 100%; height: 100%;">
+        <AttributeOverrides element-name="header-label" text="Gameplay" />
+        <ui:RadioButtonGroup label="Radio Button Group" value="-1" style="height: 46%; font-size: 53px;" />
+        <ui:Toggle label="Toggle" />
+    </ui:Instance>
+</ui:UXML>

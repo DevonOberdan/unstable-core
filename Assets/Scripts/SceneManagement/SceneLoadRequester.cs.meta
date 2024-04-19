@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: a2f6a9148fa9f93489358155ec9e939a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - loadEvent: {fileID: 11400000, guid: 357c765bf88ecf54497a9fa70e779e52, type: 2}
+  - sceneToLoad: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

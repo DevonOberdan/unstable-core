@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/MenuUI.uss?fileID=7433441132597879392&amp;guid=f8f7f04235568d84daedf7171c7eb079&amp;type=3#MenuUI" />
+    <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/MenuStyling.uss?fileID=7433441132597879392&amp;guid=d4296f73511e776479c26b958def44af&amp;type=3#MenuStyling" />
+    <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/PauseScreen.uss?fileID=7433441132597879392&amp;guid=686a1a13f7a87ee43adfe3bcb791cd96&amp;type=3#PauseScreen" />
+    <ui:GroupBox name="main-menu-centor-anchor" class="default-font" style="width: auto; height: auto; margin-top: 3px; margin-bottom: 3px; flex-grow: 1; flex-direction: row; justify-content: space-around; display: flex;">
+        <ui:GroupBox name="main-menu-body" style="flex-direction: column; flex-grow: 0; flex-shrink: 0; justify-content: center; align-items: center; width: 30%; height: 100%; margin-left: 20px; padding-left: 0;">
+            <ui:Button text="Play" display-tooltip-when-elided="true" name="play-button" class="menu-button" style="margin-bottom: 3%; -unity-font-style: normal;" />
+            <ui:Button text="Settings" display-tooltip-when-elided="true" name="settings-button" class="menu-button" style="margin-bottom: 3%;" />
+        </ui:GroupBox>
+        <ui:GroupBox name="main-menu-body" style="flex-direction: column; flex-grow: 0; flex-shrink: 0; justify-content: center; align-items: center; width: 30%; height: 100%; margin-left: 4px; padding-left: 0; margin-right: 20px;">
+            <ui:Button text="Credits" display-tooltip-when-elided="true" name="credits-button" class="menu-button" style="margin-bottom: 3%;" />
+            <ui:Button text="Quit Game" display-tooltip-when-elided="true" name="quit-button" class="menu-button" style="margin-bottom: 3%;" />
+        </ui:GroupBox>
+    </ui:GroupBox>
+</ui:UXML>

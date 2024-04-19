@@ -1,0 +1,25 @@
+.menu-button {
+    margin-bottom: 0;
+    background-color: rgb(200, 102, 95);
+    width: 65%;
+    height: 5%;
+    font-size: 700%;
+    color: rgb(210, 210, 210);
+    margin-top: 100px;
+    justify-content: flex-start;
+    -unity-font-style: normal;
+    -unity-text-align: middle-center;
+}
+
+.menu-button:hover {
+    border-left-color: rgb(232, 221, 181);
+    border-right-color: rgb(232, 221, 181);
+    border-top-color: rgb(232, 221, 181);
+    border-bottom-color: rgb(232, 221, 181);
+    border-left-width: 8px;
+    border-right-width: 8px;
+    border-top-width: 8px;
+    border-bottom-width: 8px;
+    -unity-background-image-tint-color: rgb(101, 209, 62);
+    -unity-background-scale-mode: stretch-to-fill;
+}

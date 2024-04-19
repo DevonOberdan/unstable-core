@@ -1,0 +1,57 @@
+.settings-screen-tab {
+    width: 100%;
+    height: auto;
+    position: relative;
+    left: auto;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    min-height: 10%;
+    max-height: 25%;
+    flex-shrink: 0;
+    flex-grow: 1;
+    justify-content: flex-start;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgb(102, 106, 134);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 72px;
+    color: rgba(206, 206, 206, 255);
+}
+
+.settings-screen-tab:hover {
+    background-color: rgb(78, 81, 103);
+    width: 100%;
+    flex-shrink: 0;
+    flex-grow: 1;
+    white-space: nowrap;
+}
+
+.settings-screen-tab:active {
+    background-color: rgb(120, 125, 158);
+    width: 100%;
+    flex-shrink: 0;
+    flex-grow: 1;
+    white-space: nowrap;
+}
+
+.settings-screen-tab--toggled {
+    color: rgba(51, 51, 51, 255);
+    background-color: rgb(149, 184, 209);
+}
+
+.settings-screen-tab--toggled:hover {
+    background-color: rgb(126, 154, 176);
+}
+
+.settings-screen-page {
+    width: 100%;
+    height: 100%;
+}

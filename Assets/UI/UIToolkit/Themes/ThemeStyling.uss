@@ -1,0 +1,6 @@
+.unity-base-dropdown__item {
+    -unity-font-definition: url('project://database/Assets/UI/Fonts/coolvetica%20rg%20SDF.asset?fileID=11400000&guid=c1f19b68ac4333f4a9b4dfccbf399713&type=2#coolvetica rg SDF');
+    font-size: 80px;
+    width: 100%;
+    height: 100%;
+}

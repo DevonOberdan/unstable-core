@@ -1,0 +1,36 @@
+.default-button {
+    width: 30%;
+    height: 15%;
+    font-size: 48px;
+    color: rgb(51, 51, 51);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.default-button:disabled {
+}
+
+.default-button:hover {
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+}
+
+.default-button:active {
+    -unity-background-image-tint-color: rgb(128, 128, 128);
+}
+
+.default-font {
+    -unity-font-definition: url('project://database/Assets/UI/Fonts/coolvetica%20rg%20SDF.asset?fileID=11400000&guid=c1f19b68ac4333f4a9b4dfccbf399713&type=2#coolvetica rg SDF');
+}
+
+.button-disabled {
+    opacity: 0.6;
+}
