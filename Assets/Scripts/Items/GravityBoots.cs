@@ -17,24 +17,22 @@ public class GravityBoots : MonoBehaviour
     [DrawIf(nameof(bootMode), BootMode.DRAIN)]
     [SerializeField] float fullChargeTime = 10;
 
-    [SerializeField] float flipSpeed = 4f;
-    [SerializeField] float flipTime = 1f;
+    //[SerializeField] float flipSpeed = 4f;
+    //[SerializeField] float flipTime = 1f;
     [SerializeField] float flipScalar = 4f;
 
-    float timeSinceFlip;
 
     GravityObject playerGravity;
     FPSMovement playerMovement;
 
-    readonly string gravityFlipper = "GravityFlipper";
     float currentChargeTime;
     bool isFlipping;
 
-    Vector3 preFlipRotation, currentRotation;
-
-    Tween playerFlipTween;
-
-    int currentFlippedDir;
+    Vector3 preFlipRotation;
+    //Vector3 currentRotation;
+    //Tween playerFlipTween;
+    //int currentFlippedDir;
+    //float timeSinceFlip;
 
     public float CurrentBoost { get; set; }
     public float FullChargeTime => fullChargeTime;
@@ -55,7 +53,6 @@ public class GravityBoots : MonoBehaviour
 
         playerGravity.OverrideDirection = true;
 
-
         Vector3 planetExtents = playerGravity.Source.GetComponent<MeshRenderer>().bounds.extents;
         float avgRadius = (planetExtents.x + planetExtents.y + planetExtents.z) / 3;
         FlipDistance = avgRadius;
@@ -71,8 +68,6 @@ public class GravityBoots : MonoBehaviour
 
     }
 
-
-
     private void Update()
     {
         PlayerGravityHelper();
@@ -87,9 +82,6 @@ public class GravityBoots : MonoBehaviour
         //    timeSinceFlip = 0;
         //    playerGravity.OverrideDirection = false;
         //}
-
-
-
 
         //if (isFlipping)
         //{
@@ -129,7 +121,7 @@ public class GravityBoots : MonoBehaviour
         preFlipRotation = playerGravity.CurrentGravityRotation.eulerAngles;
 
         playerGravity.GravityFlipped = flip;
-        currentFlippedDir = playerGravity.GravityDir;
+        //currentFlippedDir = playerGravity.GravityDir;
 
         StartCoroutine(Accelerate());
         OnBoost.Invoke();
@@ -137,12 +129,10 @@ public class GravityBoots : MonoBehaviour
         if (bootMode == BootMode.SINGLE_USE)
             Inventory.Instance.UseItem(ItemType.GravityBoots);
 
-        currentRotation = preFlipRotation;
-
-
+        //currentRotation = preFlipRotation;
 
         //playerGravity.SetStanding(false);
-        timeSinceFlip = 0;
+        //timeSinceFlip = 0;
         playerGravity.OverrideDirection = true;
         isFlipping = true;
         //playerFlipTween = playerGravity.transform.DORotateQuaternion(playerGravity.CurrentGravityRotation, flipTime)

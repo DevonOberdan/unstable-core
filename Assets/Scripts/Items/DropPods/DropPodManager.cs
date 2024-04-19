@@ -21,8 +21,6 @@ public class DropPodManager : MonoBehaviour
 
     [SerializeField] int dropRatePerMinute = 10;
 
-    [SerializeField] float spawnDistance = 100;
-
     [Header("Scene References")]
     [SerializeField] Player player;
 
@@ -71,7 +69,6 @@ public class DropPodManager : MonoBehaviour
         {
             DropClosest();
             podHasDropped = true;
-          //  Active = true;
         }
     }
 
@@ -101,7 +98,6 @@ public class DropPodManager : MonoBehaviour
                 Debug.Log("Pod already spawned at point");
             }
         }
-
     }
 
     public void SpawnAtPoint(DropPodSpawnPoint spawnPoint) => StartCoroutine(SetupDropPodSpawn(spawnPoint));
@@ -130,7 +126,6 @@ public class DropPodManager : MonoBehaviour
 
         // initialize pod with the provided configuration
         pod.Init(this, DeterminedPodMode());
-
 
         pod.transform.rotation = Quaternion.LookRotation(-spawnPos.forward);
 

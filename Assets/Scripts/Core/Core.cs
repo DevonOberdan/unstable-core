@@ -31,7 +31,6 @@ public class Core : MonoBehaviour
 
     bool exploded = false;
 
-
     [Header("Cooldown")]
     [SerializeField] float coolDownShrinkTime = 1.5f;
     [SerializeField] float revUpTime = 1f;
@@ -45,27 +44,22 @@ public class Core : MonoBehaviour
     [DrawIf(nameof(stallAfterCooling), true)]
     [SerializeField] float coolStallTime = 2f;
 
-
     [SerializeField] AnimationCurve cooldownCurve;
     [SerializeField] AnimationCurve cooldownRecoveryCurve;
 
     public UnityAction<float, float> OnRotationSet;
     public UnityAction<Color, float> OnColorSet;
 
-
     Tweener coolingTween;
 
     float timeSinceCooldown = 0;
-
 
     [Header("Extraction Fields")]
 
     [SerializeField] bool allowExtraction;
 
-    public enum ExtractionMode
-    {
-        CONSTANT, TIMED
-    }
+    public enum ExtractionMode { CONSTANT, TIMED }
+
     [DrawIf(nameof(allowExtraction), true, DrawIfAttribute.DisablingType.ReadOnly)]
     public ExtractionMode extractionMode;
 
@@ -85,7 +79,6 @@ public class Core : MonoBehaviour
 
     int stackedHits;
 
-
     [Header("Visuals")]
     [SerializeField] Vector2 shaderIntensityRange;
     [SerializeField] Vector2 shaderFactorRange;
@@ -101,14 +94,12 @@ public class Core : MonoBehaviour
     Vector3 minSize;
     float curvePosition = 0;
 
-
     [SerializeField] GameObject coreEnergyPrefab;
     [SerializeField] float energyExtractionForce = 0;
 
     [SerializeField] float energySpawnTime = 2f;
     [SerializeField] int energySpawnCount = 5;
-    float energySpawnPace = 20f;
-    float energyCounter = 0;
+
     float energyTimer=0f;
     //List<GameObject> coreEnergyPool;
 
@@ -173,7 +164,6 @@ public class Core : MonoBehaviour
     private void OnEnable()
     {
         OnColorSet += (color, time) => coreMat.DOColor(color, time);
-
     }
 
     private void OnDisable()
@@ -251,7 +241,6 @@ public class Core : MonoBehaviour
         curvePosition = CurrentHeat / maxHeat;
         transform.localScale = heatCurve.Evaluate(curvePosition) * scaleFactor * minSize;
     }
-
 
     public void Cooldown(float cooldownFactor)
     {
@@ -338,8 +327,7 @@ public class Core : MonoBehaviour
 
         sloMoTween = rotTween.DOTimeScale(1, revUpTime);
 
-        CurrentCoreState = allowExtraction && ExtractableThresholdMet ?
-                           CoreState.EXTRACTABLE : CoreState.HEATING;
+        CurrentCoreState = allowExtraction && ExtractableThresholdMet ? CoreState.EXTRACTABLE : CoreState.HEATING;
     }
 
     private void OnDestroy()

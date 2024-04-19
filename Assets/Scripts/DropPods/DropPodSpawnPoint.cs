@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class DropPodSpawnPoint : MonoBehaviour
@@ -11,7 +10,6 @@ public class DropPodSpawnPoint : MonoBehaviour
 
     Transform helperTransform;
     BeamEffect incomingSpawnEffect;
-
 
     public DropPod   CurrentDropPod { get; set; }
     public bool      HasDropPod         => CurrentDropPod != null;
@@ -26,12 +24,6 @@ public class DropPodSpawnPoint : MonoBehaviour
         helperTransform.localRotation = Quaternion.identity;
 
         helperTransform.gameObject.AddComponent(typeof(GravitySource));
-    }
-
-
-    private void Update()
-    {
-  
     }
 
     public void EndEffect()
@@ -74,7 +66,9 @@ public class DropPodSpawnPoint : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+#if UNITY_EDITOR
         Handles.color = Color.red;
         Handles.DrawWireDisc(transform.position, transform.forward, radius, 3.0f);
+#endif
     }
 }
