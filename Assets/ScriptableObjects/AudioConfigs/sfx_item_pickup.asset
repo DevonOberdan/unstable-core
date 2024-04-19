@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5e8936881f84a35b3687c929d229bc, type: 3}
   m_Name: sfx_item_pickup
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 6ce609972325b1f48aeafafb0eea5003, type: 3}
+  clip: {fileID: 8300000, guid: 74fc2bbfa0a8bf74abca35c62dbfe1d6, type: 3}
   oneShot: 0
   randomPitch: 0
