@@ -2,14 +2,18 @@
     <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/MenuUI.uss?fileID=7433441132597879392&amp;guid=f8f7f04235568d84daedf7171c7eb079&amp;type=3#MenuUI" />
     <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/MenuStyling.uss?fileID=7433441132597879392&amp;guid=d4296f73511e776479c26b958def44af&amp;type=3#MenuStyling" />
     <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/PauseScreen.uss?fileID=7433441132597879392&amp;guid=686a1a13f7a87ee43adfe3bcb791cd96&amp;type=3#PauseScreen" />
+    <ui:Label text="Unstable Core" display-tooltip-when-elided="true" name="Title" class="menu-label" style="align-items: center; -unity-text-align: upper-center; font-size: 200%; padding-top: 5%; color: rgb(232, 221, 181); display: flex;" />
     <ui:GroupBox name="main-menu-centor-anchor" class="default-font" style="width: auto; height: auto; margin-top: 3px; margin-bottom: 3px; flex-grow: 1; flex-direction: row; justify-content: space-around; display: flex;">
-        <ui:GroupBox name="main-menu-body" style="flex-direction: column; flex-grow: 0; flex-shrink: 0; justify-content: center; align-items: center; width: 30%; height: 100%; margin-left: 20px; padding-left: 0;">
-            <ui:Button text="Play" display-tooltip-when-elided="true" name="play-button" class="menu-button" style="margin-bottom: 3%; -unity-font-style: normal;" />
+        <ui:GroupBox name="main-menu-body" style="flex-direction: column; flex-grow: 0; flex-shrink: 0; justify-content: center; align-items: center; width: 30%; height: 90%; margin-left: 20px; padding-left: 0;">
+            <ui:Button text="Play" display-tooltip-when-elided="true" name="play-button" class="menu-button" style="margin-bottom: 3%; -unity-font-style: normal; height: 10%;" />
             <ui:Button text="Settings" display-tooltip-when-elided="true" name="settings-button" class="menu-button" style="margin-bottom: 3%;" />
         </ui:GroupBox>
-        <ui:GroupBox name="main-menu-body" style="flex-direction: column; flex-grow: 0; flex-shrink: 0; justify-content: center; align-items: center; width: 30%; height: 100%; margin-left: 4px; padding-left: 0; margin-right: 20px;">
+        <ui:GroupBox name="main-menu-body" style="flex-direction: column; flex-grow: 0; flex-shrink: 0; justify-content: center; align-items: center; width: 30%; height: 90%; margin-left: 4px; padding-left: 0; margin-right: 20px;">
             <ui:Button text="Credits" display-tooltip-when-elided="true" name="credits-button" class="menu-button" style="margin-bottom: 3%;" />
             <ui:Button text="Quit Game" display-tooltip-when-elided="true" name="quit-button" class="menu-button" style="margin-bottom: 3%;" />
         </ui:GroupBox>
+    </ui:GroupBox>
+    <ui:GroupBox name="main-menu-centor-anchor" class="default-font" style="width: auto; height: 10%; margin-top: 0; margin-bottom: 0; flex-grow: 0; flex-direction: row; justify-content: space-around; display: flex; align-items: flex-start; font-size: 100%; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; -unity-text-align: upper-center; color: rgb(255, 255, 255);">
+        <ui:Label text="Stabilize the planet&apos;s core, extract energy, and survive!" display-tooltip-when-elided="true" style="height: 40%;" />
     </ui:GroupBox>
 </ui:UXML>

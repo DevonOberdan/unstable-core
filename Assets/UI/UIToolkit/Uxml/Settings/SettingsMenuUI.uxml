@@ -6,7 +6,7 @@
     <ui:Template name="GameplayMenuUI" src="project://database/Assets/UI/UIToolkit/Uxml/Settings/GameplayMenuUI.uxml?fileID=9197481963319205126&amp;guid=ea171413621a09c4fafd2c3e09f2688f&amp;type=3#GameplayMenuUI" />
     <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/SettingsStyling.uss?fileID=7433441132597879392&amp;guid=90ef3ab876d69834e8febecaa45abf75&amp;type=3#SettingsStyling" />
     <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/PauseScreen.uss?fileID=7433441132597879392&amp;guid=686a1a13f7a87ee43adfe3bcb791cd96&amp;type=3#PauseScreen" />
-    <Style src="project://database/Assets/UI/UIToolkit/UNUSED/SettingsPageStyling.uss?fileID=7433441132597879392&amp;guid=c9f2cce87c8d90947b8b58d1269f4acb&amp;type=3#SettingsPageStyling" />
+    <Style src="project://database/Assets/UI/UIToolkit/Pages/SettingsPageStyling.uss?fileID=7433441132597879392&amp;guid=c9f2cce87c8d90947b8b58d1269f4acb&amp;type=3#SettingsPageStyling" />
     <Style src="project://database/Assets/UI/UIToolkit/StyleSheets/MenuStyling.uss?fileID=7433441132597879392&amp;guid=d4296f73511e776479c26b958def44af&amp;type=3#MenuStyling" />
     <ui:VisualElement name="settings-screen-centor-anchor" style="position: absolute; align-items: center; justify-content: center; width: 100%; height: 100%; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0); display: flex;">
         <ui:VisualElement name="settings-screen-overlay" class="pause-screen-overlay" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; justify-content: center; align-items: center; display: flex; visibility: visible;" />
@@ -18,9 +18,9 @@
                 <ui:VisualElement name="settings-tabs" class="default-font" style="width: 25%; height: 100%; padding-left: 10px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; justify-content: space-around; align-items: stretch; flex-grow: 1; flex-shrink: 0;">
                     <ui:Button text="Graphics" display-tooltip-when-elided="true" name="settings-graphics-button" class="settings-screen-tab" style="width: 100%; height: auto; position: relative; left: auto; white-space: normal;" />
                     <ui:Button text="Audio" display-tooltip-when-elided="true" name="settings-audio-button" class="settings-screen-tab" style="width: 100%; height: auto; position: relative; left: auto; white-space: normal;" />
-                    <ui:Button text="Controls" display-tooltip-when-elided="true" name="settings-controls-button" class="settings-screen-tab" style="width: 100%; height: auto; position: relative; left: auto; white-space: normal; display: flex;" />
-                    <ui:Button text="Input" display-tooltip-when-elided="true" name="settings-input-button" class="settings-screen-tab" style="width: 100%; height: auto; position: relative; left: auto; white-space: normal;" />
-                    <ui:Button text="Gameplay" display-tooltip-when-elided="true" name="settings-gameplay-button" class="settings-screen-tab" style="width: 100%; height: auto; position: relative; left: auto; white-space: normal;" />
+                    <ui:Button text="Controls" display-tooltip-when-elided="true" name="settings-controls-button" class="settings-screen-tab" style="width: 100%; height: auto; position: relative; left: auto; white-space: normal; display: none;" />
+                    <ui:Button text="Input" display-tooltip-when-elided="true" name="settings-input-button" class="settings-screen-tab" style="width: 100%; height: auto; position: relative; left: auto; white-space: normal; display: none;" />
+                    <ui:Button text="Gameplay" display-tooltip-when-elided="true" name="settings-gameplay-button" class="settings-screen-tab" style="width: 100%; height: auto; position: relative; left: auto; white-space: normal; display: none;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="settings-screen-content" style="height: 90%; width: 90%; padding-left: 25px; padding-right: 25px; padding-top: 25px; padding-bottom: 25px; margin-left: 3%;">
                     <ui:Instance template="AudioMenuUI" name="AudioMenuUI" class="settings-screen-page" style="justify-content: flex-start; position: relative; display: flex; align-items: stretch; flex-shrink: 0; flex-grow: 1;" />
