@@ -6,7 +6,6 @@
                 <ui:Label text="5" display-tooltip-when-elided="true" name="BoosterCount" class="default-font" style="font-size: 100px; background-color: rgba(0, 0, 0, 0); color: rgb(39, 221, 1);" />
                 <ui:GroupBox style="flex-direction: row; align-items: center;">
                     <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Images/booster_icon.png?fileID=2800000&amp;guid=8cb146b1271d6da45b9feb95ff70e293&amp;type=3#booster_icon&apos;); width: 200px; height: 200px; margin-top: 30px; margin-right: 30px;" />
-                    <ui:ProgressBar name="BoostBar" style="height: 16px; width: 16px; rotate: -90deg; scale: 16 3; transform-origin: top; margin-right: 0; margin-left: 0; justify-content: flex-end; align-items: stretch;" />
                 </ui:GroupBox>
             </ui:GroupBox>
             <ui:GroupBox style="align-items: center; margin-left: 180px; margin-right: 30px;">

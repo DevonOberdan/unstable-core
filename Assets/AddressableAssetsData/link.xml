@@ -184,7 +184,6 @@
     <type fullname="UnityEngine.UIElements.VisualElement/UxmlFactory" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.VisualElementAsset" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.VisualTreeAsset/UsingEntry" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.UIElements.ProgressBar/UxmlFactory" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.Canvas" preserve="all" />
