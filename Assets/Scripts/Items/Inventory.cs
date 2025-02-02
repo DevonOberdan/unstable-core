@@ -4,30 +4,13 @@ using System.Linq;
 using UnityEngine;
 
 
-/// <summary>
-/// 
-/// 
-/// 8/20/2022
-/// </summary>
 public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
 
-    Dictionary<int, int> itemCounts;
-
-    //public static Action<int,int> OnInventoryChanged;
-
-    //public float coreEnergy = 0;
-
-    //public float CoreEnergy {
-    //    get => coreEnergy;
-    //    set {
-    //        coreEnergy = value;
-
-    //    }
-    //}
     [SerializeField] bool debugEquipAtStart;
-    [SerializeField] List<GunConfig> guns;
+
+    Dictionary<int, int> itemCounts;
 
     public bool IsEmpty()
     {
@@ -62,26 +45,28 @@ public class Inventory : MonoBehaviour
         return (ItemType) itemCounts.OrderBy(keyValue => keyValue.Value).First().Key;
     }
 
-    public bool CanUseItem(ItemType type) => itemCounts[(int)type] > 0;
+    public bool CanUseItem(ItemType type)
+    {
+        return itemCounts[(int)type] > 0;
+    }
+
     public void UseItem(ItemType type)
     {
         itemCounts[(int)type]--;
         InventoryChanged((int)type);
-        //OnInventoryChanged((int)type, itemCounts[(int)type]);
     }
 
     public void AddItem(ItemType type, int count)
     {
         itemCounts[(int)type] += count;
         InventoryChanged((int)type);
-        //OnInventoryChanged((int)type, itemCounts[(int)type]);
     }
 
     void InventoryChanged(int type)
     {
         InventoryChangedEvent inventoryChanged = Events.onInventoryChanged;
         inventoryChanged.itemId = type;
-        inventoryChanged.itemCount = itemCounts[(int)type];
+        inventoryChanged.itemCount = itemCounts[type];
         EventManager.Broadcast(inventoryChanged);
     }
 
@@ -96,7 +81,6 @@ public class Inventory : MonoBehaviour
         foreach (int id in typeIds)
         {
             itemCounts.Add(id, debugEquipAtStart ? 1000 : 0);
-            //OnInventoryChanged(id, 0);
             InventoryChanged(id);
         }
     }

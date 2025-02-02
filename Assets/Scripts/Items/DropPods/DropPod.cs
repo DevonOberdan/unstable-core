@@ -8,27 +8,19 @@ using UnityEngine.Events;
 public class DropPod : MonoBehaviour
 {
     [SerializeField] PodItemMode itemMode;
-
     [SerializeField] PodDestroyMode destroyMode;
-
     [SerializeField] List<ItemPickup> itemsToSpawn;
-
     [SerializeField] Transform itemSpawnPointContainer;
-
 
     [DrawIf(nameof(destroyMode), PodDestroyMode.TIMER)]
     [SerializeField] float destroyTime = 2f;
 
-    //[SerializeField] int numberOfPickups = 4;
-
     [SerializeField] UnityEvent OnPodLanded;
     [SerializeField] UnityEvent OnInitialization;
     [SerializeField] UnityEvent OnItemsSpawned;
-
-    List<ItemPickup> itemPickups;
-
     [SerializeField] Transform doors;
 
+    List<ItemPickup> itemPickups;
     DropPodManager manager;
     GravityObject gravityData;
     bool landed, itemPickedUp;
@@ -81,7 +73,6 @@ public class DropPod : MonoBehaviour
             OnPodLanded.Invoke();
         }
     }
-
 
     // do any delay/ effects before actually spawning the items
     IEnumerator BeginSpawn()

@@ -225,14 +225,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2785358083864056678}
-        m_TargetAssemblyTypeName: AudioPlayRequester, Assembly-CSharp
+        m_TargetAssemblyTypeName: AudioPlayRequester, UnstableCore
         m_MethodName: Request
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 4fae1afb125124729add5d225f948fa2,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: ScriptableObjectLibrary.AudioConfigSO,
-            Assembly-CSharp
+            UnstableCore
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -242,14 +242,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2785358083864056678}
-        m_TargetAssemblyTypeName: AudioPlayRequester, Assembly-CSharp
+        m_TargetAssemblyTypeName: AudioPlayRequester, UnstableCore
         m_MethodName: Request
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: bf13335cd38f24d81ba601f657a04cdb,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: ScriptableObjectLibrary.AudioConfigSO,
-            Assembly-CSharp
+            UnstableCore
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -278,6 +278,7 @@ MonoBehaviour:
   keepStanding: 1
   gravityFlipped: 1
   capForce: 0
+  rotationSpeed: 5
   <GravityFactor>k__BackingField: 1
 --- !u!114 &2345307053518569062
 MonoBehaviour:
@@ -310,7 +311,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugEquipAtStart: 1
-  guns: []
 --- !u!114 &2785358083864056678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,14 +342,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2785358083864056678}
-        m_TargetAssemblyTypeName: AudioPlayRequester, Assembly-CSharp
+        m_TargetAssemblyTypeName: AudioPlayRequester, UnstableCore
         m_MethodName: Request
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 1c9c84ef57e344e459f9d1d1c0df7971,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: ScriptableObjectLibrary.AudioConfigSO,
-            Assembly-CSharp
+            UnstableCore
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -357,6 +357,7 @@ MonoBehaviour:
         m_CallState: 2
   thresholdAccelerationVal: 2
   fullChargeTime: 10
+  flipScalar: 4
 --- !u!114 &4475724232104390971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,14 +376,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2785358083864056678}
-        m_TargetAssemblyTypeName: AudioPlayRequester, Assembly-CSharp
+        m_TargetAssemblyTypeName: AudioPlayRequester, UnstableCore
         m_MethodName: Request
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: debec01e60806450b98c863e552abca5,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: ScriptableObjectLibrary.AudioConfigSO,
-            Assembly-CSharp
+            UnstableCore
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -418,9 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5cc81644ea7754783d85e9153e0353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
   pullToPosition: 1
-  dampenOppositeMomentum: 0
 --- !u!1001 &571828760562473528
 PrefabInstance:
   m_ObjectHideFlags: 0

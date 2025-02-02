@@ -199,14 +199,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5262042259223304457}
-        m_TargetAssemblyTypeName: AudioPlayRequester, Assembly-CSharp
+        m_TargetAssemblyTypeName: AudioPlayRequester, UnstableCore
         m_MethodName: Request
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 93589a183c44f45aeab0f44901fb8965,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: ScriptableObjectLibrary.AudioConfigSO,
-            Assembly-CSharp
+            UnstableCore
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
