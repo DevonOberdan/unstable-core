@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -30,7 +28,6 @@ public class DropPodSpawnPoint : MonoBehaviour
     {
         if(incomingSpawnEffect != null)
         {
-
             incomingSpawnEffect.transform.localRotation = Quaternion.identity;
             incomingSpawnEffect.transform.localPosition = incomingSpawnEffect.transform.localPosition.NewZ(0);
             incomingSpawnEffect.FlipBeam();
@@ -46,7 +43,6 @@ public class DropPodSpawnPoint : MonoBehaviour
         incomingSpawnEffect.transform.localEulerAngles = new Vector3(0, 180, 0);
         incomingSpawnEffect.transform.localPosition = new Vector3(0, 0, incomingSpawnEffect.transform.GetChild(0).localScale.y * 2);
     }
-
 
     public Transform GetNewDropPoint()
     {

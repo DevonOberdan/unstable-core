@@ -1,39 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
 public class RotateObject : MonoBehaviour
 {
-    [SerializeField]
-    Vector3 rotationVector;
-
+    [SerializeField] Vector3 rotationVector;
     [SerializeField] float rotationSpeed = 1;
 
     Tweener sloMoTween;
-
     float dampenFactor = 1f;
 
-    public float DampenFactor {
+    public float DampenFactor
+    {
         get => dampenFactor;
         set => dampenFactor = value;
     }
 
-    public float RotationSpeed {
-        get => rotationSpeed;
-        set {
-            rotationSpeed = value;
-        }
-    }
-
-    public void SetDirection(bool positive)
+    public float RotationSpeed
     {
-        rotationVector *= positive ? 1 : -1;
+        get => rotationSpeed;
+        set => rotationSpeed = value;
     }
 
     void Update()
     {
         transform.Rotate(rotationVector * rotationSpeed * dampenFactor * Time.deltaTime);
+    }
+
+    public void SetDirection(bool positive)
+    {
+        rotationVector *= positive ? 1 : -1;
     }
 
     public void SetDampenFactor(float newDampen, float shiftTime)
@@ -42,10 +37,5 @@ public class RotateObject : MonoBehaviour
             sloMoTween.Kill();
 
         sloMoTween = DOTween.To(() => dampenFactor, x => dampenFactor = x, newDampen, shiftTime);
-    }
-
-    public void SpeedUp()
-    {
-
     }
 }

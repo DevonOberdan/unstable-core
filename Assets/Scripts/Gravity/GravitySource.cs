@@ -1,15 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GravitySource : MonoBehaviour
 {
     [SerializeField] bool pullToPosition = true;
 
-   // Vector3 gravityDir;
     float gravityForce = 14f;
-
-    // public Vector3 GravityDir => gravityDir;
 
     public Vector3 BodyGravityDirection(Transform body, bool repel = false)
     {
@@ -22,7 +17,6 @@ public class GravitySource : MonoBehaviour
     public Vector3 Attract(Transform body, bool repel = false, float boostFactor = 1)
     {
         Vector3 gravityDir = BodyGravityDirection(body, repel);
-
         body.GetComponent<Rigidbody>().AddForce(gravityForce * boostFactor * gravityDir);
 
         return gravityDir;

@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CoreShells : MonoBehaviour
 {
     [SerializeField] Core core;
-
-    RotateObject rotator;
-
     [SerializeField] bool overrideSlowdownSpeed;
 
     [DrawIf(nameof(overrideSlowdownSpeed), true)]
@@ -17,6 +12,8 @@ public class CoreShells : MonoBehaviour
 
     [DrawIf(nameof(overrideSlowdownTime), true)]
     [SerializeField] float slowdownTimeFactor = 0.1f;
+
+    RotateObject rotator;
 
     void OnEnable()
     {
@@ -40,11 +37,5 @@ public class CoreShells : MonoBehaviour
                                     overrideSlowdownTime  ? slowdownTimeFactor : time);
         else
             rotator.SetDampenFactor(newSpeed, time);
-    }
-
-
-    void Update()
-    {
-        
     }
 }
