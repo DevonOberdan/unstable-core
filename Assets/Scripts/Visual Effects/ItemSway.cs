@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemSway : MonoBehaviour
@@ -17,7 +15,6 @@ public class ItemSway : MonoBehaviour
     [DrawIf(nameof(tiltOnJump), true)]
     [Range(0,10f)]
     [SerializeField] float jumpTiltVal = 10;
-
 
     Transform childTransform;
     Quaternion centerRotation, childCenterRotation;
@@ -50,9 +47,7 @@ public class ItemSway : MonoBehaviour
         HandleMovementSway();
 
         newGoalRotation = centerRotation * newSwayRotation * newMovementRotation;
-
         transform.localRotation = Quaternion.Slerp(transform.localRotation, newGoalRotation, smoothVal * Time.deltaTime);
-
         childTransform.localRotation = Quaternion.Slerp(childTransform.localRotation, childCenterRotation * newJumpRotation, jumpTiltVal * Time.deltaTime);
     }
 

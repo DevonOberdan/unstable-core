@@ -1,40 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Juice : MonoBehaviour
 {
-
     public static Juice Instance;
 
+    [SerializeField] float fovTimeScale = 10f;
+    [SerializeField] float expandedFOV;
 
-
-
-    [SerializeField]
-    float fovTimeScale = 10f;
-
-    [SerializeField]
-    float expandedFOV;
+    [Header("References")]
+    [SerializeField] Camera playerCam;
 
     float defaultFOV;
 
-
-    [Header("References")]
-
-    [SerializeField]
-    Camera playerCam;
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         defaultFOV = playerCam.fieldOfView;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void ExpandFOV(bool expand)
@@ -48,7 +29,7 @@ public class Juice : MonoBehaviour
         }
     }
 
-    IEnumerator ShiftFOV(float newFOV)
+    private IEnumerator ShiftFOV(float newFOV)
     {
         while(playerCam.fieldOfView != newFOV)
         {
@@ -56,7 +37,6 @@ public class Juice : MonoBehaviour
             yield return null;
         }
     }
-
 
     private void OnEnable()
     {
@@ -66,5 +46,4 @@ public class Juice : MonoBehaviour
     {
         Instance = null;
     }
-
 }

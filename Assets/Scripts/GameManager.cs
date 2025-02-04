@@ -1,10 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UIElement;
-using UnityEngine.Rendering;
-using EventSystem;
 
 public enum GameState
 {
@@ -20,7 +16,6 @@ public class GameManager : MonoBehaviour
     public Action OnGameLost;
     public Action OnGameStarted;
 
-
     public event Action<GameState> OnGameStateChanged;
 
     [SerializeField] EventSystem.GameEvent onGameLost;
@@ -28,7 +23,8 @@ public class GameManager : MonoBehaviour
     GameState gameState;
     bool paused;
 
-    public bool Paused { 
+    public bool Paused 
+    { 
         get => paused; 
         set 
         {
@@ -44,10 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        //DontDestroyOnLoad(this);
         Instance = this;
-        //OnGameStarted += () => Paused = false;
-        // OnGameLost += () => CursorManager.SetLock(false);
         Paused = false;
 
         SetState(GameState.PLAYING);
@@ -58,15 +51,8 @@ public class GameManager : MonoBehaviour
         Instance = null;
     }
 
-
-    void Update()
-    {
-        
-    }
-
     public void SetState(GameState newState)
     {
-
         OnGameStateChanged?.Invoke(newState);
     }
 
@@ -93,9 +79,9 @@ public class GameManager : MonoBehaviour
     {
         OnGameLost();
         onGameLost.Raise();
-        //onGameLost.OnEvent?.Invoke();
     }
 
+    //TODO
     void Explode()
     {
 

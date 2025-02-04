@@ -1,30 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using DG.Tweening;
 using ScriptableObjectLibrary;
 
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioMixer master;
-
     [SerializeField] Vector2 pitchRange = new Vector2(0.8f, 1.2f);
+    [SerializeField] AudioPlayEventSO sfxPlayEvent, musicPlayEvent;
 
+    AudioSource sfxSource, musicSource;
     float oneShotDefaultPitch;
 
     const string MASTER_GROUP = "Master";
     const string MUSIC_GROUP = "Music";
     const string SFX_GROUP = "SFX";
     const string VOLUME_SUFFIX = "Volume";
-
-    AudioSource sfxSource, musicSource;
-
-
-    [SerializeField] AudioPlayEventSO sfxPlayEvent, musicPlayEvent;
-
-    List<GameObject> soundSourcePool;
-    GameObject soundSourceFactory;
 
     void Awake()
     {
@@ -47,7 +38,6 @@ public class AudioManager : MonoBehaviour
         musicPlayEvent.OnRequestAudio -= ChangeTrack;
     }
 
-
     void UpdateVolumeSettings(SettingsAudio settings)
     {
         SetVolume(MASTER_GROUP + VOLUME_SUFFIX, settings.MasterVolume / 100f);
@@ -64,8 +54,6 @@ public class AudioManager : MonoBehaviour
         master.SetFloat(mixerGroup, decibelVal);
     }
 
-    float GetDecibelValueFromLinear(float linearValue) => linearValue == 0 ? -144f : 20.0f * Mathf.Log10(linearValue);
-
     void OneShot(AudioClip clip, float newPitch, float volume = 1)
     {
         sfxSource.pitch = newPitch;
@@ -77,13 +65,7 @@ public class AudioManager : MonoBehaviour
     void PlaySound(AudioClip clip) => OneShot(clip, oneShotDefaultPitch);
     void PlaySoundPitched(AudioClip clip, float pitch) => OneShot(clip, pitch);
     void PlaySoundRandomPitch(AudioClip clip) => OneShot(clip, Random.Range(pitchRange.x, pitchRange.y));
-
-    IEnumerator ResetPitch(float time)
-    {
-        yield return new WaitForSeconds(time+0.05f);
-        if (!sfxSource.isPlaying)
-            sfxSource.pitch = oneShotDefaultPitch;
-    }
+    float GetDecibelValueFromLinear(float linearValue) => linearValue == 0 ? -144f : 20.0f * Mathf.Log10(linearValue);
 
     void ChangeTrack(AudioConfigSO newTrack)
     {
@@ -98,5 +80,12 @@ public class AudioManager : MonoBehaviour
             PlaySoundRandomPitch(audioToPlay.Clip);
         else
             PlaySound(audioToPlay.Clip);
+    }
+
+    IEnumerator ResetPitch(float time)
+    {
+        yield return new WaitForSeconds(time + 0.05f);
+        if (!sfxSource.isPlaying)
+            sfxSource.pitch = oneShotDefaultPitch;
     }
 }
