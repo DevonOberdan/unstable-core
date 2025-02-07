@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
@@ -7,14 +5,11 @@ using UnityEngine.Events;
 public class Core : MonoBehaviour
 {
     public enum CoreState { HEATING, COOLING, EXTRACTABLE }
-    CoreState currentCoreState;
 
     [SerializeField] UnityEvent OnShrink;
 
     [Header("Heating Fields")]
-
     public AnimationCurve heatCurve;
-
     [SerializeField] Collider finalSizeReference;
 
     [Range(0.25f, 3f)]
@@ -26,16 +21,10 @@ public class Core : MonoBehaviour
 
     [SerializeField] bool heatUp = true;
 
-    float stabilityFactor = 1f;
-    float scaleFactor = 1;
-
-    bool exploded = false;
-
     [Header("Cooldown")]
     [SerializeField] float coolDownShrinkTime = 1.5f;
     [SerializeField] float revUpTime = 1f;
 
-    float defaultRotationSpeed = 1;
     [SerializeField] float extractableSpeedFactor = 0.05f;
     [SerializeField] float coolingSpeedFactor = 0.5f;
 
@@ -50,19 +39,13 @@ public class Core : MonoBehaviour
     public UnityAction<float, float> OnRotationSet;
     public UnityAction<Color, float> OnColorSet;
 
-    Tweener coolingTween;
-
-    float timeSinceCooldown = 0;
-
     [Header("Extraction Fields")]
-
     [SerializeField] bool allowExtraction;
 
     public enum ExtractionMode { CONSTANT, TIMED }
 
     [DrawIf(nameof(allowExtraction), true, DrawIfAttribute.DisablingType.ReadOnly)]
     public ExtractionMode extractionMode;
-
 
     [DrawIf(nameof(allowExtraction), true, DrawIfAttribute.DisablingType.ReadOnly)]
     [Range(0, 1)]
@@ -77,12 +60,26 @@ public class Core : MonoBehaviour
     [DrawIf(nameof(allowExtraction), true, DrawIfAttribute.DisablingType.ReadOnly)]
     [SerializeField] bool startExtractable;
 
-    int stackedHits;
 
     [Header("Visuals")]
     [SerializeField] Vector2 shaderIntensityRange;
     [SerializeField] Vector2 shaderFactorRange;
     [SerializeField] Color extractColor;
+
+    [SerializeField] GameObject coreEnergyPrefab;
+    [SerializeField] float energyExtractionForce = 0;
+
+    [SerializeField] float energySpawnTime = 2f;
+    [SerializeField] int energySpawnCount = 5;
+
+    CoreState currentCoreState;
+    float stabilityFactor = 1f;
+    float scaleFactor = 1;
+    bool exploded = false;
+    float defaultRotationSpeed = 1;
+
+    Tweener coolingTween;
+    float timeSinceCooldown = 0;
 
     new Collider collider;
     Material coreMat;
@@ -93,15 +90,8 @@ public class Core : MonoBehaviour
     Color heatColor;
     Vector3 minSize;
     float curvePosition = 0;
-
-    [SerializeField] GameObject coreEnergyPrefab;
-    [SerializeField] float energyExtractionForce = 0;
-
-    [SerializeField] float energySpawnTime = 2f;
-    [SerializeField] int energySpawnCount = 5;
-
+    int stackedHits;
     float energyTimer=0f;
-    //List<GameObject> coreEnergyPool;
 
     public bool ShouldExplode => CurrentHeat >= maxHeat && !exploded;
 
@@ -154,28 +144,13 @@ public class Core : MonoBehaviour
     public float Stability
     {
         get => stabilityFactor;
-        set
-        {
-            stabilityFactor = Mathf.Clamp01(value);
-
-        }
+        set => stabilityFactor = Mathf.Clamp01(value);
     }
 
-    private void OnEnable()
-    {
-        OnColorSet += (color, time) => coreMat.DOColor(color, time);
-    }
-
-    private void OnDisable()
-    {
-        OnColorSet -= (color, time) => coreMat.DOColor(color, time);
-    }
+    bool ExtractableThresholdMet => curvePosition < extractionThreshold && stackedHits >= stackedHitsToExtract;
 
     void Start()
     {
-        //if (!heatUp)
-        //    Explode();
-
         minSize = new Vector3(0.5f,0.5f,0.5f);
         collider = GetComponent<Collider>();
         
@@ -220,6 +195,17 @@ public class Core : MonoBehaviour
 
         energyTimer += Time.deltaTime;
     }
+
+    private void OnEnable()
+    {
+        OnColorSet += (color, time) => coreMat.DOColor(color, time);
+    }
+
+    private void OnDisable()
+    {
+        OnColorSet -= (color, time) => coreMat.DOColor(color, time);
+    }
+
     void Explode()
     {
         exploded = true;
@@ -316,8 +302,6 @@ public class Core : MonoBehaviour
         OnRotationSet(defaultRotationSpeed, revUpTime);
         CurrentCoreState = CoreState.HEATING;
     }
-
-    bool ExtractableThresholdMet => curvePosition < extractionThreshold && stackedHits >= stackedHitsToExtract;
 
     void EndCoolStall()
     {

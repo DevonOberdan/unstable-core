@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum PodDestroyMode
-{
-    ONPICKUP,
-    TIMER,
-    SHOOT,
-    KEEP
-}
+public enum PodDestroyMode { ONPICKUP, TIMER, SHOOT, KEEP }
 public enum PodItemMode { RANDOM, ALL, ALL_OF_ONE, WEIGHTED }
 
+public struct PodConfiguration
+{
+    public PodItemMode mode;
+    public ItemType itemType;
+
+    public PodConfiguration(PodItemMode itemMode, ItemType type = ItemType.Ammo)
+    {
+        this.mode = itemMode;
+        this.itemType = type;
+    }
+}
 
 public class DropPodManager : MonoBehaviour
 {
     [SerializeField] DropPod dropPodPrefab;
-
     [SerializeField] BeamEffect incomingSpawnEffectPrefab;
-
     [SerializeField] int dropRatePerMinute = 10;
 
     [Header("Scene References")]
@@ -27,34 +30,18 @@ public class DropPodManager : MonoBehaviour
     [Header("Item References")]
     [SerializeField] List<ItemPickup> allItems;
 
-
     List<DropPodSpawnPoint> spawnPoints;
-
-    bool active, podHasDropped;
-
+    bool podHasDropped;
     float timeSinceDrop = 0;
     
-    public static Vector3 PodOrientation { get; private set; }
-
     public List<DropPodSpawnPoint> PointsFromPlayer => spawnPoints.OrderBy(point => Vector3.Distance(point.transform.position, player.transform.position)).ToList();
     public DropPodSpawnPoint ClosestSpawnPoint => PointsFromPlayer.FirstOrDefault();
-
     public List<ItemPickup> AllItems => allItems;
 
+    public static Vector3 PodOrientation { get; private set; }
+    public bool Active { get; private set; }
+
     float MinimumDropTime => (60 / dropRatePerMinute);
-
-    public bool Active 
-    {
-        get => active;
-        set 
-        {
-            if(value == active)
-                return;
-
-            active = value;
-        }
-    }
-
 
     private void Awake()
     {
@@ -63,22 +50,10 @@ public class DropPodManager : MonoBehaviour
         PodOrientation = new Vector3(90, 0, 0);
     }
 
-    public void DropFirstPod()
-    {
-        if (!podHasDropped)
-        {
-            DropClosest();
-            podHasDropped = true;
-        }
-    }
-
-    public void DropClosest() => SpawnAtPoint(ClosestSpawnPoint);
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
             Active = !Active;
-
 
         if (!Active)
             return;
@@ -96,19 +71,23 @@ public class DropPodManager : MonoBehaviour
         }
     }
 
-    public void SpawnAtPoint(DropPodSpawnPoint spawnPoint) => StartCoroutine(SetupDropPodSpawn(spawnPoint));
-
-    IEnumerator SetupDropPodSpawn(DropPodSpawnPoint spawnPoint, bool spawnMultiple = false)
+    public void DropFirstPod()
     {
-        Transform spawnPos = spawnPoint.GetNewDropPoint();
+        if (!podHasDropped)
+        {
+            DropClosest();
+            podHasDropped = true;
+        }
+    }
 
-        spawnPoint.PodSpawnEffect(incomingSpawnEffectPrefab);
+    public void DropClosest()
+    {
+        SpawnAtPoint(ClosestSpawnPoint);
+    }
 
-        SpawnDropPod(spawnPoint);
-
-        yield return new WaitForSeconds(2.5f);
-
-        spawnPoint.EndEffect();
+    public void SpawnAtPoint(DropPodSpawnPoint spawnPoint)
+    {
+        StartCoroutine(SetupDropPodSpawn(spawnPoint));
     }
 
     public bool SpawnDropPod(DropPodSpawnPoint spawnPoint, bool spawnMultiple = false)
@@ -117,12 +96,10 @@ public class DropPodManager : MonoBehaviour
             return false;
 
         Transform spawnPos = spawnPoint.DropPoint;
-
         DropPod pod = Instantiate(dropPodPrefab, spawnPoint.StartingSpawnPoint, Quaternion.identity, spawnPoint.transform);
 
         // initialize pod with the provided configuration
         pod.Init(this, DeterminedPodMode());
-
         pod.transform.rotation = Quaternion.LookRotation(-spawnPos.forward);
 
         if(pod.TryGetComponent(out GravityObject podGravity))
@@ -132,6 +109,16 @@ public class DropPodManager : MonoBehaviour
 
         timeSinceDrop = 0;
         return true;
+    }
+
+    IEnumerator SetupDropPodSpawn(DropPodSpawnPoint spawnPoint, bool spawnMultiple = false)
+    {
+        spawnPoint.PodSpawnEffect(incomingSpawnEffectPrefab);
+        SpawnDropPod(spawnPoint);
+
+        yield return new WaitForSeconds(2.5f);
+
+        spawnPoint.EndEffect();
     }
 
     /// <summary>
@@ -159,18 +146,5 @@ public class DropPodManager : MonoBehaviour
         //}
 
         return config;
-    }
-
-}
-
-public struct PodConfiguration
-{
-    public PodItemMode mode;
-    public ItemType itemType;
-
-    public PodConfiguration(PodItemMode itemMode, ItemType type = ItemType.Ammo)
-    {
-        this.mode = itemMode;
-        itemType = type;
     }
 }

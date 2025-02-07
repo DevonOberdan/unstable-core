@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UISystem;
 using ScriptableObjectLibrary;
 
@@ -26,7 +23,6 @@ public class GameOverMenuController : MonoBehaviour
         menuUI.OnQuit += Quit;
 
         sceneMenuManager = transform.parent.gameObject.GetComponent<SceneMenuManager>();
-        //        gameOverMenuUI.OnOpen += sceneMenuManager.HideMenus;
 
         if(!scriptableSystem)
         {
@@ -35,16 +31,13 @@ public class GameOverMenuController : MonoBehaviour
             {
                 GameManager.Instance.Paused = true;
                 sceneMenuManager.ShowMenu(menuUI);
-                //Cursor.lockState = CursorLockMode.None;//lockState ? CursorLockMode.Locked : CursorLockMode.None;
             };
         }
-
-
     }
 
     public void Retry()
     {
-        sceneLoadRequester.Request(gameScene); //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        sceneLoadRequester.Request(gameScene);
     }
 
     public void Quit() => sceneLoadRequester.Request(quitScene);

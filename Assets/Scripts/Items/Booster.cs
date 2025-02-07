@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,16 +22,16 @@ public class Booster : MonoBehaviour
     [SerializeField] float afterBurnerTime = 2.5f;
     [DrawIf(nameof(hasAfterburn), true)]
     [SerializeField] float afterburnFactor = 0.5f;
-    //[DrawIf(nameof(hasAfterburn), true)]
-    //[SerializeField] float afterburnQuotient = 1.65f;
-
-    bool boosting, afterBurnersActive, afterBurnerUsed;
 
     FPSMovementRB playerController;
     GravityObject playerGravity;
+    bool boosting, afterBurnersActive, afterBurnerUsed;
 
-    public GravityObject PlayerGravity => playerGravity ??= GetComponentInParent<GravityObject>();
-    public FPSMovementRB PlayerController => playerController ??= GetComponentInParent<FPSMovementRB>();
+    public GravityObject PlayerGravity => playerGravity = playerGravity != null ? playerGravity : GetComponentInParent<GravityObject>();
+    public FPSMovementRB PlayerController => playerController = playerController != null ? playerController : GetComponentInParent<FPSMovementRB>();
+
+    bool AfterBurnerNeedsTurnedOn => !AfterburnersActive && boosting && PlayerController.IsFalling && !afterBurnerUsed;
+    bool CanBoost => Inventory.Instance.CanUseItem(ItemType.Booster) && !boosting && (canBoostInAir || PlayerController.IsGrounded);
 
     bool AfterburnersActive
     {
@@ -58,11 +57,6 @@ public class Booster : MonoBehaviour
     {
         CheckBoost();
     }
-
-    bool AfterBurnerNeedsTurnedOn => !AfterburnersActive && boosting && PlayerController.IsFalling && !afterBurnerUsed;
-
-    bool CanBoost => Inventory.Instance.CanUseItem(ItemType.Booster) && 
-                     !boosting && (canBoostInAir || PlayerController.IsGrounded);
 
     private void CheckBoost()
     {

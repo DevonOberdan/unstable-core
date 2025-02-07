@@ -47,8 +47,7 @@ public class DropPodSpawnPoint : MonoBehaviour
     public Transform GetNewDropPoint()
     {
         Vector2 offset = Random.insideUnitCircle * radius;
-
-        helperTransform.localPosition = new Vector3(offset.x, offset.y, 0);
+        helperTransform.localPosition = offset;
 
         if (Physics.Raycast(helperTransform.position, -transform.forward, out RaycastHit hit, 10, ~LayerMask.NameToLayer("Planet")))
         {

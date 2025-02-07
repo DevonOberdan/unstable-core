@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,21 +15,18 @@ public class Gun : MonoBehaviour
 
     GunConfig data;
     Camera mainCamera;
-
-    CameraShake cameraShake;
-
-    float timeSinceFired;
-    bool midFire;
-
-    float timeHeld;
-    bool charging, charged, chargeFired;
-
     BeamEffect newBeam;
 
     delegate void FireRound();
     FireRound Shoot;
 
     KeyCode fireButton = KeyCode.Mouse0;
+
+    float timeHeld;
+    float timeSinceFired;
+
+    bool midFire;
+    bool charging, charged, chargeFired;
 
     public GunConfig Data
     {
@@ -53,13 +49,18 @@ public class Gun : MonoBehaviour
         }
     }
 
+    public bool FireInput => Data.CanHoldFire ? Input.GetKey(fireButton) : Input.GetKeyDown(fireButton);
+
+    bool CanShoot => (!data.RequiresAmmo || Inventory.Instance.CanUseItem(ItemType.Ammo)) &&
+                     timeSinceFired > data.TimeBetweenShots &&
+                     !midFire && (data.CanHoldFire || !chargeFired);
+
+    bool IsChargeTriggered => data.InstantRelease || Input.GetKeyUp(fireButton);
+    bool ShouldFireSingleChargeShot => data.ChargeSingleShot && Input.GetKeyUp(fireButton);
 
     void Start()
     {
         mainCamera = Camera.main;
-        mainCamera.TryGetComponent(out cameraShake);
-
-       //OnFired.AddListener(() => cameraShake.AddTrauma(data.ShakeAmount));
         Data = gunModes[0];
         fireButton = KeyCode.Mouse0;
     }
@@ -78,7 +79,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
         if (GameManager.Instance.AcceptingGameInput == false)
             return;
@@ -96,11 +97,9 @@ public class Gun : MonoBehaviour
             }
         }
 
-
-
         if (data.ChargeUp)
         {
-            if (CanShoot())
+            if (CanShoot)
             {
                 ProcessChargeTime();
             }
@@ -114,9 +113,38 @@ public class Gun : MonoBehaviour
         }
     }
 
+    void LateUpdate()
+    {
+        if (GameManager.Instance.AcceptingGameInput == false)
+            return;
+
+        if (CanShoot)
+        {
+            if (data.ChargeUp)
+            {
+                if (data.CanHoldFire)
+                    ProcessHoldCharge();
+                else
+                    ProcessNonHoldCharge();
+            }
+            else if (FireInput)
+            {
+                Shoot();
+            }
+        }
+        else if (FireInput)
+        {
+            OnEmpty.Invoke();
+        }
+
+        // set charge states
+        if (data.ChargeUp)
+            ProcessChargeInput();
+    }
+
     void ProcessChargeTime()
     {
-        if (charging && Input.GetKey(fireButton))//Input.GetMouseButton(0))
+        if (charging && Input.GetKey(fireButton))
             timeHeld += Time.deltaTime;
         else
             timeHeld = 0f;
@@ -141,45 +169,11 @@ public class Gun : MonoBehaviour
         }
     }
 
-    bool IsChargeTriggered          => data.InstantRelease   || Input.GetKeyUp(fireButton);
-    bool ShouldFireSingleChargeShot => data.ChargeSingleShot && Input.GetKeyUp(fireButton);// && !chargeFired;
-
-    public bool FireInput => Data.CanHoldFire ? Input.GetKey(fireButton) : Input.GetKeyDown(fireButton);
-
     bool HoldingFire()
     {
         bool chargeBool = Data.ChargeUp ? charged : true;
 
-        return CanShoot() && chargeBool && FireInput;
-    }
-
-    void LateUpdate()
-    {
-        if (GameManager.Instance.AcceptingGameInput == false)
-            return;
-
-        if (CanShoot())
-        {
-            if (data.ChargeUp)
-            {
-                if (data.CanHoldFire)
-                    ProcessHoldCharge();
-                else
-                    ProcessNonHoldCharge();
-            }
-            else if (FireInput)
-            {
-                Shoot();
-            }
-        }
-        else if (FireInput)
-        {
-            OnEmpty.Invoke();
-        }
-
-        // set charge states
-        if (data.ChargeUp)
-            ProcessChargeInput();
+        return CanShoot && chargeBool && FireInput;
     }
 
     void ProcessHoldCharge()
@@ -210,19 +204,9 @@ public class Gun : MonoBehaviour
         }
     }
 
-    bool CanShoot() => (!data.RequiresAmmo || Inventory.Instance.CanUseItem(ItemType.Ammo)) &&
-                       timeSinceFired > data.TimeBetweenShots &&
-                       !midFire && (data.CanHoldFire || !chargeFired);
-
-
-
     #region Shoot Mode Functions
     void ShootSingle()
     {
-        //Vector3 cursorPoint = mainCamera.ScreenToWorldPoint(new Vector3(mainCamera.pixelWidth / 2, mainCamera.pixelHeight / 2, mainCamera.nearClipPlane));
-        //Ray rayFromCursor = new Ray(cursorPoint, mainCamera.transform.forward);
-        //RaycastHit hit;
-
         Fire(barrelPoint.position, FindShotLine());
 
         Inventory.Instance.UseItem(ItemType.Ammo);
@@ -235,7 +219,7 @@ public class Gun : MonoBehaviour
         Vector3 FindShotLine()
         {
             Vector3 cursorPoint = mainCamera.ScreenToWorldPoint(new Vector3(mainCamera.pixelWidth / 2, mainCamera.pixelHeight / 2, mainCamera.nearClipPlane));
-            Ray rayFromCursor = new Ray(cursorPoint, mainCamera.transform.forward);
+            Ray rayFromCursor = new(cursorPoint, mainCamera.transform.forward);
 
             if (Physics.Raycast(rayFromCursor, out RaycastHit hit, 1000, ~LayerMask.GetMask("Player"), QueryTriggerInteraction.Ignore))
                 return (hit.point - barrelPoint.position).normalized;
@@ -244,7 +228,10 @@ public class Gun : MonoBehaviour
         }
     }
 
-    void ShootBurst() => StartCoroutine(ProcessBurst());
+    void ShootBurst()
+    {
+        StartCoroutine(ProcessBurst());
+    }
 
     void ShootAutomatic()
     {

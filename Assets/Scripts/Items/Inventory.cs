@@ -12,6 +12,27 @@ public class Inventory : MonoBehaviour
 
     Dictionary<int, int> itemCounts;
 
+    private void Awake()
+    {
+        Instance = this;
+        EventManager.AddListener<PickupEvent>(evt => AddItem(evt.item.Type, evt.item.Count));
+
+        itemCounts = new();
+        int[] typeIds = (int[])Enum.GetValues(typeof(ItemType));
+
+        foreach (int id in typeIds)
+        {
+            itemCounts.Add(id, debugEquipAtStart ? 1000 : 0);
+            InventoryChanged(id);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Instance = null;
+        EventManager.RemoveListener<PickupEvent>(evt => AddItem(evt.item.Type, evt.item.Count));
+    }
+
     public bool IsEmpty()
     {
         foreach(int key in itemCounts.Keys)
@@ -68,26 +89,5 @@ public class Inventory : MonoBehaviour
         inventoryChanged.itemId = type;
         inventoryChanged.itemCount = itemCounts[type];
         EventManager.Broadcast(inventoryChanged);
-    }
-
-    private void Awake()
-    {
-        Instance = this;
-        EventManager.AddListener<PickupEvent>(evt => AddItem(evt.item.Type, evt.item.Count));
-
-        itemCounts = new();
-        int[] typeIds = (int[])Enum.GetValues(typeof(ItemType));
-
-        foreach (int id in typeIds)
-        {
-            itemCounts.Add(id, debugEquipAtStart ? 1000 : 0);
-            InventoryChanged(id);
-        }
-    }
-
-    private void OnDestroy()
-    {
-        Instance = null;
-        EventManager.RemoveListener<PickupEvent>(evt => AddItem(evt.item.Type, evt.item.Count));
     }
 }

@@ -64,7 +64,6 @@ public class DropPod : MonoBehaviour
         }
     }
 
-
     void Update()
     {
         if(!landed && GetComponent<Rigidbody>().constraints == RigidbodyConstraints.FreezeAll)
@@ -79,17 +78,14 @@ public class DropPod : MonoBehaviour
     {
         yield return new WaitForSeconds(SPAWN_DELAY*4);
 
-        OnInitialization.Invoke();
-        
+        OnInitialization.Invoke();       
         SpawnItems();
-
         doors.DOLocalMoveY(DOOR_DROP, SPAWN_DELAY);
     }
 
     void SpawnItems()
     {
         OnItemsSpawned.Invoke();
-
 
         for (int i = 0; i < itemsToSpawn.Count; i++)
         {
@@ -105,7 +101,6 @@ public class DropPod : MonoBehaviour
             }
 
             EventManager.AddListener<PickupEvent>(HandlePickupEvent);
-
 
             spawnedItem.GetComponent<GravityObject>().GravityFlipped = gravityData.GravityFlipped;
             itemPickups.Add(spawnedItem);
@@ -161,11 +156,7 @@ public class DropPod : MonoBehaviour
 
     void DestroyPod()
     {
-
-        // blow up or something
         StartCoroutine(DelayDestruction());
-        //Destroy(gameObject);
-        //maybe just pool drop pods instead of destroying?
     }
 
     IEnumerator DelayDestruction()

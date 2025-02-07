@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class GameEvent
-{
-}
+public class GameEvent { }
 
 // A simple Event System that can be used for remote systems communication
 public static class EventManager
@@ -11,7 +9,7 @@ public static class EventManager
     static readonly Dictionary<Type, Action<GameEvent>> s_Events = new Dictionary<Type, Action<GameEvent>>();
 
     static readonly Dictionary<Delegate, Action<GameEvent>> s_EventLookups =
-        new Dictionary<Delegate, Action<GameEvent>>();
+                new Dictionary<Delegate, Action<GameEvent>>();
 
     public static void AddListener<T>(Action<T> evt) where T : GameEvent
     {
