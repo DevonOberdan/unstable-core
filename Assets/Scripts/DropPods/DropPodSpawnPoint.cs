@@ -9,10 +9,10 @@ public class DropPodSpawnPoint : MonoBehaviour
     Transform helperTransform;
     BeamEffect incomingSpawnEffect;
 
-    public DropPod   CurrentDropPod { get; set; }
-    public bool      HasDropPod         => CurrentDropPod != null;
-    public Transform DropPoint          => helperTransform;
-    public Vector3   StartingSpawnPoint => incomingSpawnEffect.transform.position;
+    public DropPod CurrentDropPod { get; set; }
+    public bool HasDropPod => CurrentDropPod != null;
+    public Transform DropPoint => helperTransform;
+    public Vector3 StartingSpawnPoint => incomingSpawnEffect.transform.position;
 
     private void Awake()
     {

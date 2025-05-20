@@ -31,7 +31,9 @@ public class Booster : MonoBehaviour
     public FPSMovementRB PlayerController => playerController = playerController != null ? playerController : GetComponentInParent<FPSMovementRB>();
 
     bool AfterBurnerNeedsTurnedOn => !AfterburnersActive && boosting && PlayerController.IsFalling && !afterBurnerUsed;
-    bool CanBoost => Inventory.Instance.CanUseItem(ItemType.Booster) && !boosting && (canBoostInAir || PlayerController.IsGrounded);
+    bool CanBoost => !Restricted && !boosting && (canBoostInAir || PlayerController.IsGrounded);
+
+    public bool Restricted { get; set; }
 
     bool AfterburnersActive
     {
@@ -121,8 +123,6 @@ public class Booster : MonoBehaviour
     void Boost(float factor)
     {
         PlayerController.ForceJump(PlayerController.JumpFactor * factor);
-        Inventory.Instance.UseItem(ItemType.Booster);
-
         boosting = true;
         OnBoost.Invoke();
     }

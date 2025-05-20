@@ -2456,6 +2456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2108594809}
   - component: {fileID: 2108594810}
+  - component: {fileID: 2108594811}
   m_Layer: 7
   m_Name: Booster
   m_TagString: Untagged
@@ -2509,12 +2510,52 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2108594811}
+        m_TargetAssemblyTypeName: InventoryRestrictionHandler, UnstableCore
+        m_MethodName: ItemUsed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   boostFactor: 2.5
   boostMovingFactor: 0.85
   canBoostInAir: 1
   hasAfterburn: 1
   afterBurnerTime: 2.5
   afterburnFactor: 0.15
+--- !u!114 &2108594811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108594808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2081abf2968c15944af71468e6e42670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 1
+  OnSetRestriction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2108594810}
+        m_TargetAssemblyTypeName: Booster, UnstableCore
+        m_MethodName: set_Restricted
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2144795248
 GameObject:
   m_ObjectHideFlags: 0
