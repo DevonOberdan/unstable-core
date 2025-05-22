@@ -14,6 +14,8 @@ public class GravityFlipBoots : MonoBehaviour
     [DrawIf(nameof(bootMode), BootMode.DRAIN)]
     [SerializeField] float fullChargeTime = 10;
 
+    [SerializeField] private ItemTypeSO itemType;
+
     public float CurrentBoost { get; set; }
     public float FullChargeTime => fullChargeTime;
     public float CurrentChargeTime => currentChargeTime;
@@ -58,7 +60,7 @@ public class GravityFlipBoots : MonoBehaviour
 
     public void SetGravity(bool flip)
     {
-        if (!Inventory.Instance.CanUseItem(ItemType.GravityBoots))
+        if (!Inventory.Instance.CanUseItem(itemType))
             return;
 
         currentFlippedDir = playerGravity.GravityDir;
@@ -67,7 +69,7 @@ public class GravityFlipBoots : MonoBehaviour
         OnBoost.Invoke();
 
         if (bootMode == BootMode.SINGLE_USE)
-            Inventory.Instance.UseItem(ItemType.GravityBoots);
+            Inventory.Instance.UseItem(itemType);
 
         isFlipping = true;
 
@@ -86,7 +88,7 @@ public class GravityFlipBoots : MonoBehaviour
     {
         if (CompareTag("Player") && other.gameObject.CompareTag(gravityFlipper) && !isFlipping)
         {
-            if (Inventory.Instance.CanUseItem(ItemType.GravityBoots))
+            if (Inventory.Instance.CanUseItem(itemType))
                 SetGravity(flip);
         }
     }
@@ -97,9 +99,9 @@ public class GravityFlipBoots : MonoBehaviour
 
         if (CurrentChargeTime == 0)
         {
-            if (Inventory.Instance.CanUseItem(ItemType.GravityBoots))
+            if (Inventory.Instance.CanUseItem(itemType))
             {
-                Inventory.Instance.UseItem(ItemType.GravityBoots);
+                Inventory.Instance.UseItem(itemType);
                 currentChargeTime = FullChargeTime;
             }
             else

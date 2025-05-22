@@ -248,6 +248,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugEquipAtStart: 0
+  items:
+  - {fileID: 11400000, guid: 92f01cc901006ca4883b3cb16452b3a7, type: 2}
+  - {fileID: 11400000, guid: 3a624b48a124ea9408860e7ea980e6da, type: 2}
+  - {fileID: 11400000, guid: 11c14eddde16f2c4792336b37308186c, type: 2}
+  - {fileID: 11400000, guid: 4b27940e8779b1b4da36f7316378ef3f, type: 2}
 --- !u!4 &46057504
 Transform:
   m_ObjectHideFlags: 0
@@ -731,6 +736,7 @@ MonoBehaviour:
         m_CallState: 2
   thresholdAccelerationVal: 2
   fullChargeTime: 10
+  itemType: {fileID: 11400000, guid: 92f01cc901006ca4883b3cb16452b3a7, type: 2}
 --- !u!1001 &664874306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1385,6 +1391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 2
+  item: {fileID: 11400000, guid: 11c14eddde16f2c4792336b37308186c, type: 2}
   OnSetRestriction:
     m_PersistentCalls:
       m_Calls:
@@ -2582,6 +2589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 1
+  item: {fileID: 11400000, guid: 3a624b48a124ea9408860e7ea980e6da, type: 2}
   OnSetRestriction:
     m_PersistentCalls:
       m_Calls:
@@ -4052,7 +4060,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2586899616280842759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00b839ed13b63fb439eec734aa09ddb0, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!33 &6489074373349218004

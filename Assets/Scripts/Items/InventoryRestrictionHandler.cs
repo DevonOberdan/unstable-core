@@ -4,13 +4,13 @@ using UnityEngine.Events;
 public class InventoryRestrictionHandler : MonoBehaviour
 {
     [SerializeField] private ItemType itemType;
+    [SerializeField] private ItemTypeSO item;
 
     [SerializeField] private UnityEvent<bool> OnSetRestriction;
 
     private void OnEnable()
     {
         EventManager.AddListener<InventoryChangedEvent>(DetermineRestriction);
-
     }
 
     private void OnDisable()
@@ -21,7 +21,7 @@ public class InventoryRestrictionHandler : MonoBehaviour
 
     void DetermineRestriction(InventoryChangedEvent evt)
     {
-        if(evt.itemId == (int)itemType)
+        if(evt.itemId == item)
         {
             OnSetRestriction.Invoke(evt.itemCount == 0);
         }
@@ -29,7 +29,7 @@ public class InventoryRestrictionHandler : MonoBehaviour
 
     public void ItemUsed()
     {
-        Inventory.Instance.UseItem(itemType);
+        Inventory.Instance.UseItem(item);
     }
 
 }

@@ -9,7 +9,7 @@ public class InventoryUI : MonoBehaviour
 {
     public static InventoryUI Instance;
 
-    [SerializeField] GravityBoots boots;
+    [SerializeField] GravityFlipBoots boots;
     [SerializeField] string inGameUIName = "InventoryUI";
 
     [SerializeField] UIDocument gameScreenDoc;
@@ -90,7 +90,7 @@ public class InventoryUI : MonoBehaviour
     {
 
 
-        if(boots.bootMode == GravityBoots.BootMode.DRAIN)
+        if(boots.bootMode == GravityFlipBoots.BootMode.DRAIN)
         {
             //bootDrainLabel.visible = boots.GravityFlipped;
             bootDrainLabel.text = (boots.CurrentChargeTime / boots.FullChargeTime).ToString("0.00");

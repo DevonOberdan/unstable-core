@@ -14,7 +14,8 @@ public class PickupEvent : GameEvent
 
 public class InventoryChangedEvent : GameEvent
 {
-    public int itemId, itemCount;
+    public ItemTypeSO itemId;
+    public int itemCount;
 }
 
 public class SettingsChangedEvent : GameEvent

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using ScriptableObjectLibrary;
 
 public enum ItemType
 {
@@ -9,13 +10,14 @@ public enum ItemType
 public class ItemPickup : MonoBehaviour
 {
     [SerializeField] ItemType itemType;
+    [SerializeField] private ItemTypeSO type;
     [SerializeField] int count;
 
     [SerializeField] GameObject visualEffectObject;
     [SerializeField] UnityEvent OnPickup;
     
     public int Count { get => count; set => count = value; }
-    public ItemType Type => itemType;
+    public ItemTypeSO Type => type;
 
     void Start()
     {
@@ -37,14 +39,6 @@ public class ItemPickup : MonoBehaviour
 
             OnPickup.Invoke();
             Destroy(gameObject);
-        }
-        else if (other.CompareTag("Core"))
-        {
-            Destroy(gameObject);
-        }
-        else if (other.CompareTag("Planet"))
-        {
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 

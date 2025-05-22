@@ -9,8 +9,11 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
 
     [SerializeField] bool debugEquipAtStart;
+    [SerializeField] private List<ItemTypeSO> items;
 
-    Dictionary<int, int> itemCounts;
+    Dictionary<ItemTypeSO, int> itemCounts;
+
+    public List<ItemTypeSO> Items => items;
 
     private void Awake()
     {
@@ -18,12 +21,14 @@ public class Inventory : MonoBehaviour
         EventManager.AddListener<PickupEvent>(evt => AddItem(evt.item.Type, evt.item.Count));
 
         itemCounts = new();
-        int[] typeIds = (int[])Enum.GetValues(typeof(ItemType));
+    }
 
-        foreach (int id in typeIds)
+    private void Start()
+    {
+        foreach (ItemTypeSO data in items)
         {
-            itemCounts.Add(id, debugEquipAtStart ? 1000 : 0);
-            InventoryChanged(id);
+            itemCounts.Add(data, debugEquipAtStart ? 1000 : 0);
+            InventoryChanged(data);
         }
     }
 
@@ -35,7 +40,7 @@ public class Inventory : MonoBehaviour
 
     public bool IsEmpty()
     {
-        foreach(int key in itemCounts.Keys)
+        foreach(ItemTypeSO key in itemCounts.Keys)
         {
             if (itemCounts[key] > 0)
                 return false;
@@ -43,47 +48,47 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    public int ItemCount(ItemType type)
+    public int ItemCount(ItemTypeSO type)
     {
-        if(!itemCounts.ContainsKey((int)type))
+        if(!itemCounts.ContainsKey(type))
             return 0;
 
-        return itemCounts[(int)type];
+        return itemCounts[type];
     }
 
-    public bool AnyItemsRequired(List<ItemType> types)
+    public bool AnyItemsRequired(List<ItemTypeSO> types)
     {
-        foreach (ItemType key in types)
+        foreach (ItemTypeSO key in types)
         {
-            if (itemCounts[(int)key] == 0)
+            if (itemCounts[key] == 0)
                 return true;
         }
         return false;
     }
 
-    public ItemType ItemMostNeeded() 
+    public ItemTypeSO ItemMostNeeded() 
     {
-        return (ItemType) itemCounts.OrderBy(keyValue => keyValue.Value).First().Key;
+        return itemCounts.OrderBy(keyValue => keyValue.Value).First().Key;
     }
 
-    public bool CanUseItem(ItemType type)
+    public bool CanUseItem(ItemTypeSO type)
     {
-        return itemCounts[(int)type] > 0;
+        return itemCounts[type] > 0;
     }
 
-    public void UseItem(ItemType type)
+    public void UseItem(ItemTypeSO type)
     {
-        itemCounts[(int)type]--;
-        InventoryChanged((int)type);
+        itemCounts[type]--;
+        InventoryChanged(type);
     }
 
-    public void AddItem(ItemType type, int count)
+    public void AddItem(ItemTypeSO type, int count)
     {
-        itemCounts[(int)type] += count;
-        InventoryChanged((int)type);
+        itemCounts[type] += count;
+        InventoryChanged(type);
     }
 
-    void InventoryChanged(int type)
+    void InventoryChanged(ItemTypeSO type)
     {
         InventoryChangedEvent inventoryChanged = Events.onInventoryChanged;
         inventoryChanged.itemId = type;

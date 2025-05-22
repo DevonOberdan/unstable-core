@@ -57,11 +57,6 @@ public class DropPod : MonoBehaviour
         {
             itemsToSpawn = manager.AllItems;
         }
-        else if (itemMode == PodItemMode.ALL_OF_ONE)
-        {
-            for (int i = 0; i < itemsToSpawn.Capacity; i++)
-                itemsToSpawn.Add(manager.AllItems.Where(item => item.Type == config.itemType).FirstOrDefault());
-        }
     }
 
     void Update()

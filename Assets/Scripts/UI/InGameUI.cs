@@ -83,6 +83,6 @@ namespace UISystem {
         }
 
         void SetCount(InventoryChangedEvent evt) => SetItem(evt.itemId, evt.itemCount);
-        public void SetItem(int itemIndex, int count) => uiCounts[itemIndex].text = "" + count;
+        public void SetItem(ItemTypeSO item, int count) => uiCounts[Inventory.Instance.Items.IndexOf(item)].text = "" + count;
     }
 }

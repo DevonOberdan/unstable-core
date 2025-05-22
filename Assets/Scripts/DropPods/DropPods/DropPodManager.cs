@@ -9,12 +9,10 @@ public enum PodItemMode { RANDOM, ALL, ALL_OF_ONE, WEIGHTED }
 public struct PodConfiguration
 {
     public PodItemMode mode;
-    public ItemType itemType;
 
-    public PodConfiguration(PodItemMode itemMode, ItemType type = ItemType.Ammo)
+    public PodConfiguration(PodItemMode itemMode)
     {
         this.mode = itemMode;
-        this.itemType = type;
     }
 }
 
