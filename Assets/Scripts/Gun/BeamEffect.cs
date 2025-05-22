@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
+
+public interface IBeamable
+{
+    void HitByBeam(RaycastHit hit);
+}
 
 public class BeamEffect : MonoBehaviour
 {
     [Range(0.05f, 2f)]
     [SerializeField] float fireTime = 0.1f;
-
 
     public UnityEvent OnBeamStarted;
 
@@ -38,8 +40,6 @@ public class BeamEffect : MonoBehaviour
             activePercentage = fireBeamTween.ElapsedPercentage();
             fireBeamTween.Kill();
         }
-
-        float scale = 1 - activePercentage;
 
         fireBeamTween = transform.DOScaleZ(1, fireTime * activePercentage).SetEase(Ease.Linear);
 

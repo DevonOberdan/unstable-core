@@ -1,8 +1,9 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
+using System.Collections;
 
-public class Core : MonoBehaviour
+public class Core : MonoBehaviour, IBeamable
 {
     public enum CoreState { HEATING, COOLING, EXTRACTABLE }
 
@@ -35,6 +36,8 @@ public class Core : MonoBehaviour
 
     [SerializeField] AnimationCurve cooldownCurve;
     [SerializeField] AnimationCurve cooldownRecoveryCurve;
+
+    [SerializeField] private float cooldownFactor = 0.04f;
 
     public UnityAction<float, float> OnRotationSet;
     public UnityAction<Color, float> OnColorSet;
@@ -206,6 +209,20 @@ public class Core : MonoBehaviour
         OnColorSet -= (color, time) => coreMat.DOColor(color, time);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject other = collision.collider.gameObject;
+        
+        if (other.TryGetComponent(out Projectile _))
+        {
+            Cooldown(cooldownFactor);
+        }
+        else if(other.CompareTag("Player"))
+        {
+            GameManager.Instance.DeathEnd();
+        }
+    }
+
     void Explode()
     {
         exploded = true;
@@ -259,7 +276,7 @@ public class Core : MonoBehaviour
         sloMoTween = rotTween.DOTimeScale(defaultRotationSpeed * coolingSpeedFactor, coolDownShrinkTime).SetEase(Ease.Linear);
     }
 
-    public float Extract(float extractionAmount, RaycastHit impactData, Vector3 hitDir)
+    public float Extract(float extractionAmount, RaycastHit impactData)
     {
         Stability -= extractionAmount;
 
@@ -270,17 +287,6 @@ public class Core : MonoBehaviour
             energyTimer = 0;
         }
 
-        // spawn item
-
-        // set its gravity source to player
-        //energyItem.GetComponent<GravityObject>().SetSource()
-        // launch it off in the direction of the reflection
-
-
-        //Inventory.Instance.AddItem(ItemType.CoreEnergy, 1);
-        //Inventory.Instance.CoreEnergy += extractionAmount;
-
-        // event that sends extractionAmount over to Inventory (have inventory value be a multiple of this small extractionAmount
         return 1;
 
         void SpawnEnergy(int count)
@@ -289,7 +295,6 @@ public class Core : MonoBehaviour
             {
                 GameObject energyItem = Instantiate(coreEnergyPrefab, impactData.point, Quaternion.identity);
                 Rigidbody energyItemRB = energyItem.GetComponent<Rigidbody>();
-                //energyItemRB.AddForce(Vector3.Reflect(hitDir, impactData.normal) * energyExtractionForce);
                 energyItemRB.AddForce(Vector3.ProjectOnPlane(Random.insideUnitSphere, impactData.normal).normalized * energyExtractionForce);
             }
         }
@@ -317,5 +322,13 @@ public class Core : MonoBehaviour
     {
         sloMoTween.Kill();
         rotTween.Kill();
+    }
+
+    public void HitByBeam(RaycastHit hit)
+    {
+        if(CurrentCoreState == CoreState.EXTRACTABLE)
+        {
+            Extract(0.001f, hit);
+        }
     }
 }

@@ -49,9 +49,11 @@ public class Gun : MonoBehaviour
         }
     }
 
+    public bool Restricted { get; set; }
+
     public bool FireInput => Data.CanHoldFire ? Input.GetKey(fireButton) : Input.GetKeyDown(fireButton);
 
-    bool CanShoot => (!data.RequiresAmmo || Inventory.Instance.CanUseItem(ItemType.Ammo)) &&
+    bool CanShoot => (!data.RequiresAmmo || !Restricted) &&
                      timeSinceFired > data.TimeBetweenShots &&
                      !midFire && (data.CanHoldFire || !chargeFired);
 
@@ -103,7 +105,7 @@ public class Gun : MonoBehaviour
             {
                 ProcessChargeTime();
             }
-            else if(!Inventory.Instance.CanUseItem(ItemType.Ammo))
+            else if(Restricted)
             {
                 charged = false;
                 chargeFired = false;
@@ -209,7 +211,6 @@ public class Gun : MonoBehaviour
     {
         Fire(barrelPoint.position, FindShotLine());
 
-        Inventory.Instance.UseItem(ItemType.Ammo);
         OnFired.Invoke();
         timeSinceFired = 0;
 
@@ -250,25 +251,24 @@ public class Gun : MonoBehaviour
 
         if (timeSinceFired > data.TimeBetweenRounds)
         {
-
             if (Physics.Raycast(rayCastStart, mainCamera.transform.forward, out RaycastHit hit, 10000, ~(1 << LayerMask.NameToLayer("Player")), QueryTriggerInteraction.Ignore))
             {
-                if (hit.collider.gameObject.TryGetComponent(out Core core) && core.CurrentCoreState == Core.CoreState.EXTRACTABLE)
+                if (hit.collider.gameObject.TryGetComponent(out IBeamable beamable))
                 {
-                    Debug.DrawLine(rayCastStart, hit.point, Color.cyan);
-                    core.Extract(0.001f, hit, mainCamera.transform.forward);
+                    beamable.HitByBeam(hit);
                 }
             }
             timeSinceFired = 0;
         }
     }
 
-    IEnumerator ProcessBurst(){
+    IEnumerator ProcessBurst()
+    {
         midFire = true;
         ShootSingle();
         
         int i = 1;
-        while(i<data.BurstCount && Inventory.Instance.CanUseItem(ItemType.Ammo))
+        while(i<data.BurstCount && !Restricted)
         {
             yield return new WaitForSeconds(data.TimeBetweenRounds);
             ShootSingle();

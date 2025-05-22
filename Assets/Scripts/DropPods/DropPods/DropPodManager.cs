@@ -25,7 +25,7 @@ public class DropPodManager : MonoBehaviour
     [SerializeField] int dropRatePerMinute = 10;
 
     [Header("Scene References")]
-    [SerializeField] Player player;
+    [SerializeField] Transform player;
 
     [Header("Item References")]
     [SerializeField] List<ItemPickup> allItems;
@@ -34,7 +34,7 @@ public class DropPodManager : MonoBehaviour
     bool podHasDropped;
     float timeSinceDrop = 0;
     
-    public List<DropPodSpawnPoint> PointsFromPlayer => spawnPoints.OrderBy(point => Vector3.Distance(point.transform.position, player.transform.position)).ToList();
+    public List<DropPodSpawnPoint> PointsFromPlayer => spawnPoints.OrderBy(point => Vector3.Distance(point.transform.position, player.position)).ToList();
     public DropPodSpawnPoint ClosestSpawnPoint => PointsFromPlayer.FirstOrDefault();
     public List<ItemPickup> AllItems => allItems;
 

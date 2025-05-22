@@ -370,7 +370,6 @@ GameObject:
   - component: {fileID: 8766268403179082960}
   - component: {fileID: 8766268403179082961}
   - component: {fileID: 8845840987248763622}
-  - component: {fileID: 889673538263655623}
   - component: {fileID: 8845840987248763624}
   m_Layer: 7
   m_Name: Player
@@ -496,18 +495,6 @@ MonoBehaviour:
   timeToLerpAirSpeedFromMoving: 2
   timeToLerpAirSpeedFromStill: 0.2
   airSpeedQuotient: 2
---- !u!114 &889673538263655623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8766268403179082975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00b839ed13b63fb439eec734aa09ddb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8845840987248763624
 MonoBehaviour:
   m_ObjectHideFlags: 0

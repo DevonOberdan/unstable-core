@@ -3,27 +3,16 @@ using DG.Tweening;
 
 public class RotateObject : MonoBehaviour
 {
-    [SerializeField] Vector3 rotationVector;
-    [SerializeField] float rotationSpeed = 1;
+    [SerializeField] private Vector3 rotationVector;
+    
+    [field: SerializeField] public float RotationSpeed { get; set; }
+    public float DampenFactor { get; set; } = 1;
 
-    Tweener sloMoTween;
-    float dampenFactor = 1f;
-
-    public float DampenFactor
-    {
-        get => dampenFactor;
-        set => dampenFactor = value;
-    }
-
-    public float RotationSpeed
-    {
-        get => rotationSpeed;
-        set => rotationSpeed = value;
-    }
+    private Tweener sloMoTween;
 
     void Update()
     {
-        transform.Rotate(rotationVector * rotationSpeed * dampenFactor * Time.deltaTime);
+        transform.Rotate(DampenFactor * RotationSpeed * Time.deltaTime * rotationVector);
     }
 
     public void SetDirection(bool positive)
@@ -36,6 +25,6 @@ public class RotateObject : MonoBehaviour
         if (sloMoTween.IsActive())
             sloMoTween.Kill();
 
-        sloMoTween = DOTween.To(() => dampenFactor, x => dampenFactor = x, newDampen, shiftTime);
+        sloMoTween = DOTween.To(() => DampenFactor, x => DampenFactor = x, newDampen, shiftTime);
     }
 }

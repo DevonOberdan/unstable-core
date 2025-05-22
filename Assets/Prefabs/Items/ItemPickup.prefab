@@ -172,14 +172,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1731670914355065613}
-        m_TargetAssemblyTypeName: AudioPlayRequester, Assembly-CSharp
+        m_TargetAssemblyTypeName: AudioPlayRequester, UnstableCore
         m_MethodName: Request
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 8883b67c302fa4455856b32a110012e0,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: ScriptableObjectLibrary.AudioConfigSO,
-            Assembly-CSharp
+            UnstableCore
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -260,4 +260,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationVector: {x: 0, y: 1, z: 0}
-  rotationSpeed: 0
+  <RotationSpeed>k__BackingField: 0

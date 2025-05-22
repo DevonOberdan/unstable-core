@@ -633,7 +633,7 @@ MonoBehaviour:
   incomingSpawnEffectPrefab: {fileID: 3207757143375644375, guid: 6db060c92adb5c34fb2fa152a5491b51,
     type: 3}
   dropRatePerMinute: 10
-  player: {fileID: 6203225298410856991}
+  player: {fileID: 2586899616280842765}
   allItems:
   - {fileID: 6116562003192038726, guid: aa191eaac0e361f449ccc2c7ad38b407, type: 3}
   - {fileID: 5593781648980537795, guid: 5c7e5bee5f003364bbda4f62029bb3e8, type: 3}
@@ -1252,6 +1252,7 @@ GameObject:
   - component: {fileID: 1335185476}
   - component: {fileID: 1335185477}
   - component: {fileID: 1335185478}
+  - component: {fileID: 1335185479}
   m_Layer: 7
   m_Name: GunContainer
   m_TagString: Untagged
@@ -1336,6 +1337,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1335185479}
+        m_TargetAssemblyTypeName: InventoryRestrictionHandler, UnstableCore
+        m_MethodName: ItemUsed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnEmpty:
     m_PersistentCalls:
       m_Calls:
@@ -1359,6 +1372,34 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3235304794356672272, guid: f9a140ea0f386594dbc6d8629e639fe5,
     type: 3}
   barrelPoint: {fileID: 8253688884681682644}
+--- !u!114 &1335185479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335185475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2081abf2968c15944af71468e6e42670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 2
+  OnSetRestriction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1335185478}
+        m_TargetAssemblyTypeName: Gun, UnstableCore
+        m_MethodName: set_Restricted
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1337502687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,7 +2285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationVector: {x: 0, y: 1.25, z: 0}
-  rotationSpeed: 25
+  <RotationSpeed>k__BackingField: 0
 --- !u!114 &2057008946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2414,7 +2455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationVector: {x: 0.25, y: 0, z: 0.75}
-  rotationSpeed: 50
+  <RotationSpeed>k__BackingField: 0
 --- !u!114 &2093034422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4240,7 +4281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationVector: {x: 1, y: 0, z: 1}
-  rotationSpeed: 3
+  <RotationSpeed>k__BackingField: 0
 --- !u!64 &9072824203153170976
 MeshCollider:
   m_ObjectHideFlags: 0
